@@ -1,5 +1,5 @@
-# My Personal Project
-## The Dungeon
+# The Dungeon
+## General Description
 The proposed project for this term is the design and development of a **roguelike video game**
 that integrates captivating boss fights. Titled *The Dungeon*, the game will be meticulously
 designed to not only appeal to enthusiasts of the roguelike genre, but also attract and welcome
@@ -22,10 +22,3 @@ contribute to the ongoing evolution of the roguelike genre.
 - As a user, I want to be able to collect power-up items in my inventory
 - As a user, I want to be able to control the movement of my character
 - As a user, I want to be able to enter new levels of the dungeon by entering the gate
-
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
-
-An example of text with **bold** and *italic* fonts.  
