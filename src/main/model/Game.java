@@ -5,6 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import model.map.Map1;
 import model.map.Map2;
+import ui.SelectionScreen;
 
 import java.util.Random;
 
@@ -23,6 +24,8 @@ public class Game {
     private Dungeon map;
     private EnemyManager enemyManager;
     private ProjectileManager projectileManager;
+    private PowerUpManager powerUpManager;
+    private SelectionScreen selectionScreen;
     private Screen screen;
 
     public Game(Screen screen) {
@@ -31,6 +34,9 @@ public class Game {
         map = new Map1(this);
         enemyManager = new EnemyManager(this, floorLevel);
         projectileManager = new ProjectileManager(this);
+        powerUpManager = new PowerUpManager(this);
+        selectionScreen = new SelectionScreen(this);
+        selectionScreen.printChoices();
     }
 
     public boolean roomCleared() {
@@ -42,23 +48,40 @@ public class Game {
     }
 
     public void newRoom() {
-        player.setPosition(new Position(1, 6));
+        player.reset();
         map = getRandomMap();
         projectileManager = new ProjectileManager(this);
         enemyManager = new EnemyManager(this, floorLevel);
     }
 
     public void updateGame() {
+        if (!gameState) {
+            return;
+        }
         if (nextLevel()) {
             floorLevel++;
             newRoom();
+            gameState = false;
+            selectionScreen = new SelectionScreen(this);
+            selectionScreen.printChoices();
         }
+        powerUpManager.update();
         player.update();
         enemyManager.updateAll();
         projectileManager.updateAll();
     }
 
     public void drawGame() {
+        // no drawing of the power up selection screen yet
+//        if (gameState) {
+//            projectileManager.drawAll(screen);
+//            player.draw(screen);
+//            enemyManager.drawAll(screen);
+//            map.draw(screen);
+//            drawStats(screen);
+//        } else {
+//            selectionScreen.draw(screen);
+//        }
         projectileManager.drawAll(screen);
         player.draw(screen);
         enemyManager.drawAll(screen);
@@ -75,6 +98,8 @@ public class Game {
         text.putString(16, 0, String.valueOf(player.getDefense()));
         text.putString(20, 0, "ATK: ");
         text.putString(26, 0, String.valueOf(player.getAttack()));
+        text.putString(70, 0, "LEVEL: ");
+        text.putString(78, 0, String.valueOf(floorLevel));
     }
 
     public Dungeon getRandomMap() {
@@ -109,6 +134,18 @@ public class Game {
 
     public ProjectileManager getProjectileManager() {
         return projectileManager;
+    }
+
+    public PowerUpManager getPowerUpManager() {
+        return powerUpManager;
+    }
+
+    public SelectionScreen getSelectionScreen() {
+        return selectionScreen;
+    }
+
+    public void setGameState(boolean state) {
+        gameState = state;
     }
 
 }

@@ -5,10 +5,12 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import ui.TerminalGame;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+
 public class Player extends Entity {
 
     private static final TextColor color = TextColor.ANSI.GREEN;
-    private static final int MOVECOOLDOWN = TerminalGame.FPS / 3;
+    private static final int MOVECOOLDOWN = TerminalGame.FPS / 6;
     private String faceDirection;
     private int maxHealth = 100;
     private int health;
@@ -18,11 +20,18 @@ public class Player extends Entity {
     private int maxAttack = 15;
     private int shootCd = 0;
     private int maxShootCd = 15;
+    private int range = 50;
 
     public Player(Game game) {
         super(new Position(1, 6), MOVECOOLDOWN, game);
         faceDirection = "right";
         this.health = maxHealth;
+        this.defense = maxDefense;
+        this.attack = maxAttack;
+    }
+
+    public void reset() {
+        setPosition(new Position(1, 6));
         this.defense = maxDefense;
         this.attack = maxAttack;
     }
@@ -101,7 +110,33 @@ public class Player extends Entity {
         return attack;
     }
 
+    public int getRange() {
+        return range;
+    }
+
     public void decreaseHealth(int damage) {
-        health -= damage;
+        health -= Math.max(damage - defense, damage * 0.1);
+    }
+
+    public void editAttack(int amount) {
+        attack += amount;
+        maxAttack += amount;
+    }
+
+    public void editDefense(int amount) {
+        defense += amount;
+        maxDefense += amount;
+    }
+
+    public void editHealth(int amount) {
+        maxHealth += amount;
+    }
+
+    public void editRange(int amount) {
+        range += amount;
+    }
+
+    public void heal(int amount) {
+        health = Math.min(health + amount, maxHealth);
     }
 }

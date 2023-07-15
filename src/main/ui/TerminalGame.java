@@ -55,18 +55,21 @@ public class TerminalGame {
         } catch (NullPointerException e) {
             return;
         }
-        /*
-        WASD for moving
-        E for open inventory
-        SPACE for shoot
-         */
-        if ("wasd".indexOf(keyPressed) != -1) {
-            game.getPlayer().move(keyPressed);
-        } else if (keyPressed == 'e') {
-            // stub
-        } else if (keyPressed == ' ') {
-            game.getPlayer().shoot();
+        if (game.getGameState()) {
+            if ("wasd".indexOf(keyPressed) != -1) {
+                game.getPlayer().move(keyPressed);
+            } else if (keyPressed == 'e') {
+                game.getPowerUpManager().printPowerUps();
+            } else if (keyPressed == ' ') {
+                game.getPlayer().shoot();
+            }
+        } else {
+            if (keyPressed == '1' || keyPressed == '2' || keyPressed == '3') {
+                game.getSelectionScreen().choose(keyPressed);
+                game.setGameState(true);
+            } 
         }
+
     }
 
     public Screen getScreen() {

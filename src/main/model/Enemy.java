@@ -11,9 +11,8 @@ import java.util.Random;
 public class Enemy extends Entity {
 
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 1;
-    private static final TextColor.RGB COLOR = new TextColor.RGB(128, 0, 128);
+    private static final TextColor.RGB COLOR = new TextColor.RGB(255, 0, 0);
     private static final int ATTACKCD = 30;
-    private final TextColor.RGB color;
     private Random rand = new Random();
     private int health = 30;
     private int defense = 0;
@@ -22,7 +21,6 @@ public class Enemy extends Entity {
 
     public Enemy(Position position, Game game) {
         super(position, MOVECOOLDOWN, game);
-        color = new TextColor.RGB(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
     }
 
     public void update() {
@@ -40,7 +38,7 @@ public class Enemy extends Entity {
 
     public void draw(Screen screen) {
         TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(color);
+        text.setForegroundColor(COLOR);
         text.putString(position.getX() * 2, position.getY() + 1, Game.BLOCK);
         text.putString(position.getX() * 2 + 1, position.getY() + 1, Game.BLOCK);
     }
@@ -51,7 +49,7 @@ public class Enemy extends Entity {
 
     public void attackPlayer() {
         if (attackCd <= 0) {
-            game.getPlayer().decreaseHealth(attack - game.getPlayer().getDefense());
+            game.getPlayer().decreaseHealth(attack);
             attackCd = ATTACKCD;
         }
     }

@@ -10,7 +10,6 @@ public class Projectile extends Entity {
     private static final TextColor.RGB projectileColor = new TextColor.RGB(128, 0, 128);
     // may change speed to be none constant later
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 5;
-    private static final int LIFETIME = 50;
     private final char direction;
     private int lifeTime;
     private int damage;
@@ -19,7 +18,7 @@ public class Projectile extends Entity {
         super(position, MOVECOOLDOWN, game);
         this.direction = direction;
         this.damage = damage;
-        lifeTime = LIFETIME;
+        lifeTime = game.getPlayer().getRange();
     }
 
     public void update() {
