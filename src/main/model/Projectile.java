@@ -1,8 +1,6 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import ui.TerminalGame;
 
 public class Projectile extends Entity {
@@ -12,7 +10,7 @@ public class Projectile extends Entity {
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 5;
     private final char direction;
     private int lifeTime;
-    private int damage;
+    private final int damage;
 
     //REQUIRES: direction == 'w' or 'a' 'or 's' or 'd'
     //Effects: constructs a projectile with given direction, position, and damage
@@ -81,7 +79,6 @@ public class Projectile extends Entity {
     public void moveDown() {
         if (game.getMap().checkCollisionWall(new Position(position.getX(), position.getY() + 1))) {
             touchWallAction();
-            System.out.println("no");
             return;
         }
         position.editPosY(1);

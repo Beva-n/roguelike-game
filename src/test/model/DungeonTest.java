@@ -9,13 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DungeonTest {
 
-    Game game;
     Dungeon map;
 
     @BeforeEach
     void runBefore(){
-        game = new Game();
-        map = new Map1(game);
+        map = new Map1();
     }
 
     @Test

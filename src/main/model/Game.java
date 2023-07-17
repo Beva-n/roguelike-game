@@ -1,8 +1,6 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import model.map.Map1;
 import model.map.Map2;
 import ui.SelectionScreen;
@@ -22,18 +20,18 @@ public class Game {
     // true of ongoing, false for paused
     private boolean gameState = false;
     private int floorLevel = 1;
-    private Player player;
+    private final Player player;
     private Dungeon map;
     private EnemyManager enemyManager;
     private ProjectileManager projectileManager;
-    private PowerUpManager powerUpManager;
+    private final PowerUpManager powerUpManager;
     private SelectionScreen selectionScreen;
 
     //Effects: Constructs a new paused game with a new player, map, enemy manager, projectile manager
     // and selection screen, and a base floor level of 1
     public Game() {
         player = new Player(this);
-        map = new Map1(this);
+        map = new Map1();
         enemyManager = new EnemyManager(this, floorLevel);
         projectileManager = new ProjectileManager(this);
         powerUpManager = new PowerUpManager();
@@ -87,11 +85,12 @@ public class Game {
     //Effects: Creates a random map from the available map pool
     public Dungeon getRandomMap() {
         int i = rand.nextInt(2);
+        System.out.println(i);
         switch (i) {
             case 1:
-                return new Map2(this);
+                return new Map2();
             default:
-                return new Map1(this);
+                return new Map1();
         }
     }
 

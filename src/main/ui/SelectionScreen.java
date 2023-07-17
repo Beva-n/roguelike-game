@@ -9,9 +9,9 @@ import java.util.Random;
 import java.util.Set;
 
 public class SelectionScreen {
-    private Random rand = new Random();
-    private PowerUp[] choices = new PowerUp[3];
-    private Game game;
+    private final Random rand = new Random();
+    private final PowerUp[] choices = new PowerUp[3];
+    private final Game game;
 
 
     //Effects: Constructs a new selection screen that generates random power ups for the player to

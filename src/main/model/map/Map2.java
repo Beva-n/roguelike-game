@@ -8,8 +8,8 @@ public class Map2 extends Dungeon {
 
     //Effects: Constructs a map with default walls and doors and an additional
     //         6 4x4 walls in middle of the map
-    public Map2(Game game) {
-        super(game);
+    public Map2() {
+        super();
         addPillar4x4(new Position(7, 5));
         addPillar4x4(new Position(7, 14));
         addPillar4x4(new Position(17, 5));

@@ -1,7 +1,5 @@
 package model;
 
-import com.googlecode.lanterna.screen.Screen;
-
 public abstract class PowerUp {
 
     private final boolean oneUse;

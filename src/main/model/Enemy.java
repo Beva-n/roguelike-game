@@ -1,25 +1,22 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
-import com.sun.security.auth.module.LdapLoginModule;
 import ui.TerminalGame;
 
 import java.util.Random;
 
 public class Enemy extends Entity {
 
-    private static final int MOVECOOLDOWN = TerminalGame.FPS / 1;
+    private static final int MOVECOOLDOWN = TerminalGame.FPS;
     public static final TextColor.RGB ENEMYCOLOR = new TextColor.RGB(255, 0, 0);
     private static final int ATTACKCD = 30;
-    private Random rand = new Random();
+    private final Random rand = new Random();
     private int health = 30;
     private int defense = 0;
     private int attack = 40;
     private int attackCd = 0;
 
-    //Effects: Constructs a enemy with a initial start position, health of 30, defense of 0
+    //Effects: Constructs an enemy with an initial start position, health of 30, defense of 0
     //         attack of 40, move cooldown of 1s, and attack cooldown of 1s
     public Enemy(Position position, Game game) {
         super(position, MOVECOOLDOWN, game);

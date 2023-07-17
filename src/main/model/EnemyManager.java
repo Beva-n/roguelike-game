@@ -3,7 +3,7 @@ package model;
 import java.util.Random;
 
 public class EnemyManager extends EntityManager {
-    private Random rand;
+    private final Random rand;
 
     //Effects: Constructs an enemy manager that keeps track of all enemies in a list
     //         spawns 3 enemies in random locations within the map

@@ -1,8 +1,6 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +9,14 @@ public abstract class Dungeon {
 
     protected ArrayList<Position> getWallTile;
     protected ArrayList<Position> doorTile;
-    public static final TextColor.RGB WALLCOLOR = new TextColor.RGB(150, 75,0);
-    public static final TextColor.RGB DOORCOLOR1 = new TextColor.RGB(255, 0, 0);
-    public static final TextColor.RGB DOORCOLOR2 = new TextColor.RGB(255, 255, 0);
-    private Game game;
+    public static final TextColor.RGB WALL_COLOR = new TextColor.RGB(150, 75,0);
+    public static final TextColor.RGB DOOR_COLOR1 = new TextColor.RGB(255, 0, 0);
+    public static final TextColor.RGB DOOR_COLOR2 = new TextColor.RGB(255, 255, 0);
 
     //Effects: Constructs a basic map with outer walls and a door
-    public Dungeon(Game game) {
+    public Dungeon() {
         getWallTile = new ArrayList<>();
         doorTile = new ArrayList<>();
-        this.game = game;
         buildBasicWalls();
     }
 

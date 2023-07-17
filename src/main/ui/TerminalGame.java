@@ -3,13 +3,10 @@ package ui;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import model.*;
 
 import java.io.IOException;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
 public class TerminalGame {
 
@@ -112,15 +109,15 @@ public class TerminalGame {
     //         enemies are not defeated and yellow coloured if they are
     public void drawDungeon() {
         TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(Dungeon.WALLCOLOR);
+        text.setForegroundColor(Dungeon.WALL_COLOR);
         for (Position tile : game.getMap().getWallTile()) {
             text.putString(tile.getX() * 2, tile.getY() + 1, Game.BLOCK);
             text.putString(tile.getX() * 2 + 1, tile.getY() + 1, Game.BLOCK);
         }
         if (game.roomCleared()) {
-            text.setForegroundColor(Dungeon.DOORCOLOR2);
+            text.setForegroundColor(Dungeon.DOOR_COLOR2);
         } else {
-            text.setForegroundColor(Dungeon.DOORCOLOR1);
+            text.setForegroundColor(Dungeon.DOOR_COLOR1);
         }
         for (Position tile : game.getMap().getDoorTile()) {
             text.putString(tile.getX() * 2, tile.getY() + 1, Game.BLOCK);
@@ -133,7 +130,7 @@ public class TerminalGame {
     public void drawPlayer() {
         Player p = game.getPlayer();
         TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(Player.PLAYERCOLOR);
+        text.setForegroundColor(Player.PLAYER_COLOR);
         text.putString(p.getPosition().getX() * 2, p.getPosition().getY() + 1, Game.BLOCK);
         text.putString(p.getPosition().getX() * 2 + 1, p.getPosition().getY() + 1, Game.BLOCK);
     }
@@ -177,9 +174,4 @@ public class TerminalGame {
             System.out.println(" -" + names);
         }
     }
-
-    public Screen getScreen() {
-        return screen;
-    }
-
 }

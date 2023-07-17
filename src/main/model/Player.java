@@ -1,16 +1,12 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import ui.TerminalGame;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 public class Player extends Entity {
 
-    public static final TextColor PLAYERCOLOR = TextColor.ANSI.GREEN;
-    private static final int MOVECOOLDOWN = TerminalGame.FPS / 6;
+    public static final TextColor PLAYER_COLOR = TextColor.ANSI.GREEN;
+    private static final int MOVE_COOLDOWN = TerminalGame.FPS / 6;
     private String faceDirection;
     private int maxHealth = 100;
     private int health;
@@ -26,7 +22,7 @@ public class Player extends Entity {
     //         def/ max def of 20, a range of 50, a face direction of right
     //         a shootcd of half a second, and a fixed starting position
     public Player(Game game) {
-        super(new Position(1, 6), MOVECOOLDOWN, game);
+        super(new Position(1, 6), MOVE_COOLDOWN, game);
         faceDirection = "right";
         this.health = maxHealth;
         this.defense = maxDefense;

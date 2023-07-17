@@ -1,7 +1,5 @@
 package model;
 
-import com.googlecode.lanterna.screen.Screen;
-
 import java.util.ArrayList;
 import java.util.List;
 

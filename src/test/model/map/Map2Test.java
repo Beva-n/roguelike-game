@@ -10,13 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Map2Test {
-    Game game;
     Map2 map2;
 
     @BeforeEach
     void runBefore() {
-        game = new Game();
-        map2 = new Map2(game);
+        map2 = new Map2();
     }
 
     @Test

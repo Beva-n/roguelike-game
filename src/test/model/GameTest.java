@@ -57,8 +57,8 @@ public class GameTest {
     @Test
     void testGetRandomMap() {
         Dungeon m = game.getRandomMap();
-        Map1 m1 = new Map1(game);
-        Map2 m2 = new Map2(game);
+        Map1 m1 = new Map1();
+        Map2 m2 = new Map2();
         assertTrue(m.getClass() == m2.getClass() || m.getClass() == m1.getClass());
     }
 
