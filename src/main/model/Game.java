@@ -26,27 +26,32 @@ public class Game {
     private ProjectileManager projectileManager;
     private PowerUpManager powerUpManager;
     private SelectionScreen selectionScreen;
-    private Screen screen;
 
-    public Game(Screen screen) {
-        this.screen = screen;
+    //Effects: Constructs a new paused game with a new player, map, enemy manager, projectile manager
+    // and selection screen, and a base floor level of 1
+    public Game() {
         player = new Player(this);
         map = new Map1(this);
         enemyManager = new EnemyManager(this, floorLevel);
         projectileManager = new ProjectileManager(this);
-        powerUpManager = new PowerUpManager(this);
+        powerUpManager = new PowerUpManager();
         selectionScreen = new SelectionScreen(this);
         selectionScreen.printChoices();
     }
 
+    //Effects: Checks whether all the enemies are defeated in the map
     public boolean roomCleared() {
         return enemyManager.getEntities().isEmpty();
     }
 
+    //Effects: Checks whether the room is cleared and player is interacting with the door
     public boolean nextLevel() {
         return roomCleared() && getMap().checkCollisionDoor(player.getPosition());
     }
 
+    //Modifies: this
+    //Effects: resets the player location, regenerates a map, and resets projectile
+    // and enemy manager
     public void newRoom() {
         player.reset();
         map = getRandomMap();
@@ -54,6 +59,11 @@ public class Game {
         enemyManager = new EnemyManager(this, floorLevel);
     }
 
+    //Modifies: this
+    //Effects: if game state is false, nothing happens
+    // if the player enters the next level, create a new room and enter selection mode where player
+    // picks a new upgrade
+    // if game state is true, updates all the power ups and entities in the game
     public void updateGame() {
         if (!gameState) {
             return;
@@ -71,7 +81,9 @@ public class Game {
         projectileManager.updateAll();
     }
 
-    public void drawGame() {
+    //Modifies: screen
+    //Effects: draws all the entities and the map on the screen
+    public void drawGame(Screen screen) {
         // no drawing of the power up selection screen yet
 //        if (gameState) {
 //            projectileManager.drawAll(screen);
@@ -89,6 +101,8 @@ public class Game {
         drawStats(screen);
     }
 
+    //Effects: displayed the attack/defense/health of the player on the screen
+    // as well as the current floor level
     public void drawStats(Screen screen) {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(TEXT_COLOR);
@@ -102,6 +116,7 @@ public class Game {
         text.putString(78, 0, String.valueOf(floorLevel));
     }
 
+    //Effects: Creates a random map from the available map pool
     public Dungeon getRandomMap() {
         int i = rand.nextInt(2);
         switch (i) {

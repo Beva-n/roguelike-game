@@ -22,6 +22,9 @@ public class Player extends Entity {
     private int maxShootCd = 15;
     private int range = 50;
 
+    //Effects: Constructs a player with hp/max hp of 100, attack/max attack of 15
+    //         def/ max def of 20, a range of 50, a face direction of right
+    //         a shootcd of half a second, and a fixed starting position
     public Player(Game game) {
         super(new Position(1, 6), MOVECOOLDOWN, game);
         faceDirection = "right";
@@ -30,19 +33,23 @@ public class Player extends Entity {
         this.attack = maxAttack;
     }
 
+    //Modifies: this
+    //Effects: reset the player to default position
     public void reset() {
         setPosition(new Position(1, 6));
-        this.defense = maxDefense;
-        this.attack = maxAttack;
+        // this.defense = maxDefense;
+        // this.attack = maxAttack;
     }
 
+    //Modifies: this
+    //Effects: Reduces the player's move cooldown and shoot cool down by 1 respectively
     public void update() {
-        if (moveCooldown > 0) {
-            moveCooldown--;
-        }
+        moveCooldown--;
         shootCd--;
     }
 
+    //Modifies: screen
+    //Effects: draw the player on the screen, as a green tile
     public void draw(Screen screen) {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(color);
@@ -50,6 +57,10 @@ public class Player extends Entity {
         text.putString(position.getX() * 2 + 1, position.getY() + 1, Game.BLOCK);
     }
 
+    //Modifies: game
+    //Effects: if shoot cooldown is greater than 0, nothing happens
+    //         if shoot cooldwon is less than or equal to 0, spawn a projectile flying towards
+    //         the player's face direction
     public void shoot() {
         if (shootCd > 0) {
             return;
@@ -74,28 +85,76 @@ public class Player extends Entity {
         }
     }
 
+    //Modifies: this
+    //Effects: same as entity plus change face direction to right
     @Override
     public void moveRight() {
         super.moveRight();
         faceDirection = "right";
     }
 
+    //Modifies: this
+    //Effects: same as entity plus change face direction to left
     @Override
     public void moveLeft() {
         super.moveLeft();
         faceDirection = "left";
     }
 
+    //Modifies: this
+    //Effects: same as entity plus change face direction to up
     @Override
     public void moveUp() {
         super.moveUp();
         faceDirection = "up";
     }
 
+    //Modifies: this
+    //Effects: same as entity plus change face direction to down
     @Override
     public void moveDown() {
         super.moveDown();
         faceDirection = "down";
+    }
+
+    //Requires: damage > 0
+    //Modifies: this
+    //Effects: reduces the player's health by the higher between damage - defense
+    //         and 10% of damage
+    public void decreaseHealth(int damage) {
+        health -= Math.max(damage - defense, damage * 0.1);
+    }
+
+    //Modifies: this
+    //Effects: change the player's attack and max attack by amount
+    public void editAttack(int amount) {
+        attack += amount;
+        maxAttack += amount;
+    }
+
+    //Modifies: this
+    //Effects: change the player's defense and max defense by amount
+    public void editDefense(int amount) {
+        defense += amount;
+        maxDefense += amount;
+    }
+
+    //Modifies: this
+    //Effects: change the player's max health by amount
+    public void editHealth(int amount) {
+        maxHealth += amount;
+    }
+
+    //Modifies: this
+    //Effects: change the player's range by amount
+    public void editRange(int amount) {
+        range += amount;
+    }
+
+    //Modifies: this
+    //Effects: increase the player's health by amount, it cannot exceed maxHealth
+    public void heal(int amount) {
+        health = Math.min(health + amount, maxHealth);
     }
 
     public int getHealth() {
@@ -114,29 +173,20 @@ public class Player extends Entity {
         return range;
     }
 
-    public void decreaseHealth(int damage) {
-        health -= Math.max(damage - defense, damage * 0.1);
+    public int getShootCd() {
+        return shootCd;
     }
 
-    public void editAttack(int amount) {
-        attack += amount;
-        maxAttack += amount;
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
-    public void editDefense(int amount) {
-        defense += amount;
-        maxDefense += amount;
+    public String getFaceDirection() {
+        return faceDirection;
     }
 
-    public void editHealth(int amount) {
-        maxHealth += amount;
+    public void setFaceDirection(String faceDirection) {
+        this.faceDirection = faceDirection;
     }
 
-    public void editRange(int amount) {
-        range += amount;
-    }
-
-    public void heal(int amount) {
-        health = Math.min(health + amount, maxHealth);
-    }
 }

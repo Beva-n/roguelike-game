@@ -8,10 +8,16 @@ import java.util.Properties;
 
 public class ProjectileManager extends EntityManager {
 
+
+    //Effects: Constructs a Projectile Manager that keep track of all the projectiles in the game
+    //         using a list
     public ProjectileManager(Game game) {
         super(game);
     }
 
+    //Modifies: this, game
+    //Effects: Checks collision between projectiles and enemies in the game, if collided
+    //         the enemy takes projectiles damage and projectile is deleted
     public void checkCollisionAll() {
         List<Entity> enemies = game.getEnemyManager().getEntities();
         List<Projectile> removeList = new ArrayList<>();
@@ -23,7 +29,7 @@ public class ProjectileManager extends EntityManager {
                     e.reduceHealth(p.getDamage());
                     removeList.add(p);
                     if (e.getHealth() <= 0) {
-                        game.getProjectileManager().remove(e);
+                        game.getEnemyManager().remove(e);
                     }
                 }
             }

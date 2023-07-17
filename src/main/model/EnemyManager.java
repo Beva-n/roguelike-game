@@ -5,12 +5,16 @@ import java.util.Random;
 public class EnemyManager extends EntityManager {
     private Random rand;
 
-    public EnemyManager(Game game, int count) {
+    //Effects: Constructs an enemy manager that keeps track of all enemies in a list
+    //         spawns 3 enemies in random locations within the map
+    public EnemyManager(Game game, int level) {
         super(game);
         rand = new Random();
-        spawn(count + 2);
+        spawn(level + 2);
     }
 
+    //Modifies: this
+    //Effects: spawns a given amount of enemies in random locations on the map
     public void spawn(int count) {
         while (count > 0) {
             int y = rand.nextInt(20) + 1;
@@ -23,6 +27,9 @@ public class EnemyManager extends EntityManager {
         }
     }
 
+    //Modifies: game
+    //Effects: checks collision between enemies and the player, the there is collision,
+    //         the enemies attacks the player
     public void checkCollisionAll() {
         for (int i = 0; i < getEntities().size(); i++) {
             Enemy e = ((Enemy) getEntities().get(i));

@@ -10,14 +10,6 @@ public class Position {
         posY = y;
     }
 
-    public int getX() {
-        return posX;
-    }
-
-    public int getY() {
-        return posY;
-    }
-
     public void editPosX(int x) {
         posX += x;
     }
@@ -36,5 +28,13 @@ public class Position {
         }
         Position node = (Position) o;
         return posX == node.posX && posY == node.posY;
+    }
+
+    public int getX() {
+        return posX;
+    }
+
+    public int getY() {
+        return posY;
     }
 }

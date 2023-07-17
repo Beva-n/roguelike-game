@@ -7,13 +7,16 @@ import model.PowerUp;
 
 public class HealingBlessing extends PowerUp {
 
-    private static final String NAME = "HEAL BLESSING";
-    private static final String DESCRIPTION = "Heal 20 hp";
+    public static final String NAME = "HEAL BLESSING";
+    public static final String DESCRIPTION = "Heal 20 hp";
 
+    //Effects: Construct a one time use healing powerup with a name, description
     public HealingBlessing(Game g) {
         super(true, NAME, DESCRIPTION, g);
     }
 
+    //Modifies: game
+    //Effects: Heals the player by 20 hp
     @Override
     public void apply() {
         game.getPlayer().heal(20);

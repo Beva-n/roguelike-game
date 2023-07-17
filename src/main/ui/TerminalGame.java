@@ -24,7 +24,7 @@ public class TerminalGame {
     public void start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
-        game = new Game(screen);
+        game = new Game();
         // TerminalSize terminalSize = screen.getTerminalSize();
         startTick();
     }
@@ -40,7 +40,7 @@ public class TerminalGame {
         handleUserInput();
         screen.clear();
         game.updateGame();
-        game.drawGame();
+        game.drawGame(screen);
         screen.refresh();
     }
 
@@ -67,7 +67,7 @@ public class TerminalGame {
             if (keyPressed == '1' || keyPressed == '2' || keyPressed == '3') {
                 game.getSelectionScreen().choose(keyPressed);
                 game.setGameState(true);
-            } 
+            }
         }
 
     }

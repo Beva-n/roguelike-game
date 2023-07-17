@@ -9,6 +9,7 @@ public abstract class PowerUp {
     protected final String name;
     protected final String description;
 
+    //Effects: Constructs a power up with onetime use, name, and description attributes
     public PowerUp(boolean oneUse, String name, String description, Game game) {
         this.oneUse = oneUse;
         this.name = name;

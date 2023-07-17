@@ -1,6 +1,5 @@
 package ui;
 
-import com.googlecode.lanterna.screen.Screen;
 import model.Game;
 import model.PowerUp;
 import model.powerups.*;

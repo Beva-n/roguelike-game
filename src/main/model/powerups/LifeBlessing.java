@@ -6,13 +6,18 @@ import model.Game;
 import model.PowerUp;
 
 public class LifeBlessing extends PowerUp {
-    private static final String NAME = "LIFE BLESSING";
-    private static final String DESCRIPTION = "increase max hp by 10 and heal 10 hp";
+    public static final String NAME = "LIFE BLESSING";
+    public static final String DESCRIPTION = "increase max hp by 10 and heal 10 hp";
 
+
+    //Effects: Construct a one time use hp powerup with a name, description
     public LifeBlessing(Game g) {
         super(true, NAME, DESCRIPTION, g);
     }
 
+
+    //Modifies: game
+    //Effects: Increases the player's max hp by 10 and heals by 10
     @Override
     public void apply() {
         game.getPlayer().editHealth(10);

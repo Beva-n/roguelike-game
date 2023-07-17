@@ -5,6 +5,9 @@ import model.Game;
 import model.Position;
 
 public class Map2 extends Dungeon {
+
+    //Effects: Constructs a map with default walls and doors and an additional
+    //         6 4x4 walls in middle of the map
     public Map2(Game game) {
         super(game);
         addPillar4x4(new Position(7, 5));
@@ -16,12 +19,14 @@ public class Map2 extends Dungeon {
 
     }
 
+    //Modifies: this
+    //Effects: Adds a new 4x4 solid block in wall tiles, with the input being the input
     public void addPillar4x4(Position position) {
         int x = position.getX();
         int y = position.getY();
         for (int i = x; i < x + 4; i++) {
             for (int j = y; j < y + 4; j++) {
-                wallTile.add(new Position(i, j));
+                getWallTile.add(new Position(i, j));
             }
         }
     }
