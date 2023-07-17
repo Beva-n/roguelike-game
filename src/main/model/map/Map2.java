@@ -1,7 +1,6 @@
 package model.map;
 
 import model.Dungeon;
-import model.Game;
 import model.Position;
 
 public class Map2 extends Dungeon {
