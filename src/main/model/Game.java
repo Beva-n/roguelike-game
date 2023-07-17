@@ -11,8 +11,10 @@ import java.util.Random;
 
 public class Game {
 
-    public static final String BLOCK = String.valueOf('█');
-    public static final String BALL = String.valueOf('⬤');
+    @SuppressWarnings({"checkstyle:AvoidEscapedUnicodeCharacters", "checkstyle:SuppressWarnings"})
+    public static final String BLOCK = String.valueOf('\u2588');
+    @SuppressWarnings({"checkstyle:AvoidEscapedUnicodeCharacters", "checkstyle:SuppressWarnings"})
+    public static final String BALL = String.valueOf('\u2B24');
     public static final TextColor.RGB TEXT_COLOR = new TextColor.RGB(255, 255, 255);
 
     private final Random rand = new Random();
