@@ -42,4 +42,12 @@ public class EnemyManagerTest {
         enemyManager.checkCollisionAll();
         assertEquals(80, game.getPlayer().getHealth());
     }
+
+    @Test
+    void testValidPosition() {
+        Position p2 = enemyManager.makeValidPosition(15 ,15);
+        assertEquals(new Position(15, 15), p2);
+        Position p1 = enemyManager.makeValidPosition(0 ,0);
+        assertEquals(new Position(38, 10), p1);
+    }
 }

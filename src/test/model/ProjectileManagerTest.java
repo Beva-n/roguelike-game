@@ -31,5 +31,13 @@ public class ProjectileManagerTest {
         enemyManager.spawn(new Enemy(new Position(2, 1), game));
         projectileManager.checkCollisionAll();
         assertFalse(projectileManager.getEntities().isEmpty());
+
+        projectileManager.clearEntities();
+        enemyManager.clearEntities();
+        projectileManager.spawn(new Projectile(new Position(1, 1), 'w', 10000, game));
+        enemyManager.spawn(new Enemy(new Position(1, 1), game));
+        projectileManager.checkCollisionAll();
+        assertTrue(projectileManager.getEntities().isEmpty());
+        assertTrue(enemyManager.getEntities().isEmpty());
     }
 }

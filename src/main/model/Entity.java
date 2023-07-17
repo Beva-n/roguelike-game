@@ -39,7 +39,7 @@ public abstract class Entity {
             case 's':
                 moveDown();
                 return;
-            case 'a':
+            default:
                 moveLeft();
         }
     }

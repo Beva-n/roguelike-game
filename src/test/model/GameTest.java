@@ -18,6 +18,8 @@ public class GameTest {
 
     @Test
     void testConstructor() {
+        game.getSelectionScreen();
+        assertTrue(game.getPowerUpManager().getPowerUps().isEmpty());
         assertFalse(game.getGameState());
         assertEquals(1, game.getFloorLevel());
     }
@@ -33,6 +35,7 @@ public class GameTest {
     void testNextLevel() {
         assertFalse(game.nextLevel());
         game.getEnemyManager().clearEntities();
+        assertFalse(game.nextLevel());
         game.getPlayer().setPosition(new Position(39, 10));
         assertTrue(game.nextLevel());
     }

@@ -7,7 +7,7 @@ import ui.TerminalGame;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
-public class Player extends Entity {
+public class Player extends Entity{
 
     public static final TextColor PLAYERCOLOR = TextColor.ANSI.GREEN;
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 6;
@@ -70,7 +70,7 @@ public class Player extends Entity {
                 game.getProjectileManager().spawn(new Projectile(
                         new Position(position.getX() - 1, position.getY()), 'a', attack, game));
                 return;
-            case "right":
+            default:
                 game.getProjectileManager().spawn(new Projectile(
                         new Position(position.getX() + 1, position.getY()), 'd', attack, game));
         }
@@ -178,6 +178,10 @@ public class Player extends Entity {
 
     public void setFaceDirection(String faceDirection) {
         this.faceDirection = faceDirection;
+    }
+
+    public void setShootCd(int shootCd) {
+        this.shootCd = shootCd;
     }
 
 }

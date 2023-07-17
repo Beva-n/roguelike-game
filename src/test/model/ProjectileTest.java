@@ -37,6 +37,9 @@ public class ProjectileTest {
         assertEquals(new Position(14, 15), leftProjectile.getPosition());
         assertEquals(4, leftProjectile.getMoveCooldown());
         assertEquals(48, leftProjectile.getLifeTime());
+        leftProjectile.setLifeTime(0);
+        leftProjectile.update();
+        assertEquals(new Position(14, 15), leftProjectile.getPosition());
     }
 
     @Test

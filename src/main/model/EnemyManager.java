@@ -19,10 +19,8 @@ public class EnemyManager extends EntityManager {
         while (count > 0) {
             int y = rand.nextInt(20) + 1;
             int x = rand.nextInt(33) + 5;
-            if (game.getMap().checkCollisionWall(new Position(x, y))) {
-                continue;
-            }
-            super.spawn(new Enemy(new Position(x, y), game));
+            Position validPosition = makeValidPosition(x, y);
+            super.spawn(new Enemy(validPosition, game));
             count--;
         }
     }
@@ -38,5 +36,14 @@ public class EnemyManager extends EntityManager {
             }
         }
     }
+
+    public Position makeValidPosition(int x, int y) {
+        if (game.getMap().checkCollisionWall(new Position(x, y))) {
+            return new Position(38, 10);
+        } else {
+            return new Position(x, y);
+        }
+    }
+
 
 }

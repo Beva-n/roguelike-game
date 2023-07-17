@@ -32,5 +32,7 @@ public class PositionTest {
         assertEquals(pos, new Position(1, 1));
         assertNotEquals(pos, new Position(1, 0));
         assertNotEquals(pos, new Game());
+        assertNotEquals(pos, null);
+        assertEquals(pos, pos);
     }
 }

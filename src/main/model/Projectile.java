@@ -100,4 +100,8 @@ public class Projectile extends Entity {
     public int getLifeTime() {
         return lifeTime;
     }
+
+    public void setLifeTime(int lifeTime) {
+        this.lifeTime = lifeTime;
+    }
 }

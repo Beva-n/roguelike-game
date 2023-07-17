@@ -49,6 +49,16 @@ public class PlayerTest {
         assertEquals(1, game.getProjectileManager().getEntities().size());
         player.shoot();
         assertEquals(1, game.getProjectileManager().getEntities().size());
+        player.setShootCd(0);
+        player.setFaceDirection("left");
+        player.shoot();
+        player.setShootCd(0);
+        player.setFaceDirection("up");
+        player.shoot();
+        player.setShootCd(0);
+        player.setFaceDirection("down");
+        player.shoot();
+        assertEquals(4, game.getProjectileManager().getEntities().size());
     }
 
     @Test
