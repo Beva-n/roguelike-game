@@ -21,6 +21,9 @@ public class TerminalGame {
      * Begins the game and method does not leave execution
      * until game is complete.
      */
+
+    //Modifies: this
+    //Effects: initiates a new game, start by asking the user to pick a starting power up
     public void start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
@@ -29,6 +32,8 @@ public class TerminalGame {
         startTick();
     }
 
+    //Modifies: this
+    //Effects: Start updating the game frame by frame
     public void startTick() throws IOException, InterruptedException {
         while (true) {
             tick();
@@ -36,6 +41,9 @@ public class TerminalGame {
         }
     }
 
+    //Modifies: this
+    //Effects: Handles all the user input, updates all the entities in the game,
+    // and clears and redraws everything on the screen based on the updates
     public void tick() throws IOException {
         handleUserInput();
         screen.clear();
@@ -45,8 +53,8 @@ public class TerminalGame {
     }
 
     // MODIFIES: this
-    // EFFECTS: Changes the state of the game / moves the player depending on
-    //          key inputs
+    // EFFECTS: Changes the state of the game / moves the player / printing power up obtained
+    // depending on key inputs
     private void handleUserInput() throws IOException {
         KeyStroke stroke = screen.pollInput();
         char keyPressed;
@@ -72,6 +80,10 @@ public class TerminalGame {
 
     }
 
+
+    //Modifies: this
+    //Effects: Draws all the element of the game, including enemies, projectiles,
+    // player, stats, and the map
     public void render() {
         drawAllEntities();
         drawPlayer();
@@ -108,7 +120,7 @@ public class TerminalGame {
         if (game.roomCleared()) {
             text.setForegroundColor(Dungeon.DOORCOLOR2);
         } else {
-            text.setForegroundColor(Dungeon.DOORCOLOR2);
+            text.setForegroundColor(Dungeon.DOORCOLOR1);
         }
         for (Position tile : game.getMap().getDoorTile()) {
             text.putString(tile.getX() * 2, tile.getY() + 1, Game.BLOCK);

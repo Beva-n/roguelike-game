@@ -13,11 +13,17 @@ public class SelectionScreen {
     private PowerUp[] choices = new PowerUp[3];
     private Game game;
 
+
+    //Effects: Constructs a new selection screen that generates random power ups for the player to
+    // choose from, creates 1 instance of selection upon creation
     public SelectionScreen(Game game) {
         this.game = game;
         randomPowerUps();
     }
 
+    //Modifies: this
+    //Effects: Resets the set for power ups  and chooses 3 new random power ups
+    // from a pool of 5 power ups
     public void randomPowerUps() {
         Set<Integer> randomChoices = new HashSet<>();
         while (randomChoices.size() < 3) {
@@ -25,12 +31,12 @@ public class SelectionScreen {
         }
         int index = 0;
         for (int i : randomChoices) {
-            System.out.println(i);
             choices[index] = getPowerUp(i);
             index++;
         }
     }
 
+    //Effects: Gets a power up depending on the number given
     public PowerUp getPowerUp(int i) {
         switch (i) {
             case 4:
@@ -46,6 +52,8 @@ public class SelectionScreen {
         }
     }
 
+    //Modifies: game
+    //Effects: Adds a power up to the player's obtained power ups based on the player input
     public void choose(char i) {
         int index = Character.getNumericValue(i);
         game.getPowerUpManager().addPowerUp(choices[index - 1]);
@@ -59,6 +67,7 @@ public class SelectionScreen {
 //        }
 //    }
 
+    //Effects: Prints out all the power ups obtained so far by the player on the terminal screen
     public void printChoices() {
         System.out.println("Confirm the power up choice by pressing number keys");
         for (int i = 1; i <= 3; i++) {
