@@ -7,7 +7,7 @@ import ui.TerminalGame;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     public static final TextColor PLAYERCOLOR = TextColor.ANSI.GREEN;
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 6;
