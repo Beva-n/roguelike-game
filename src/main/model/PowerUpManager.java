@@ -31,25 +31,19 @@ public class PowerUpManager {
     //Modifies: this
     //Effects: Add a power up to the queue and logs name of the power up added
     public void addPowerUp(PowerUp powerUp) {
-        if (powerUp.getOneUse()) {
-            oneTimePowerUps.add(powerUp);
-        }
+        oneTimePowerUps.add(powerUp);
 //        else {
 //            powerUps.add(powerUp);
 //        }
         log.add(powerUp.name);
     }
 
-    //Effects: Prints out the name of all the power ups obtained in the console
-    public void printPowerUps() {
-        System.out.println("Power ups obtained so far: ");
-        for (String names : log) {
-            System.out.println(" -" + names);
-        }
-    }
-
     public Queue<PowerUp> getPowerUps() {
         return oneTimePowerUps;
+    }
+
+    public List<String> getLog() {
+        return log;
     }
 
 }

@@ -21,10 +21,6 @@ public abstract class Entity {
     //Effects: updates some fields of the entity
     public abstract void update();
 
-    //Modifies: screen
-    //Effects: Draws the entity on the screen
-    public abstract void draw(Screen screen);
-
     //REQUIRES: direction == 'a' or 's' or 'w' or 'd'
     //Modifies: this
     //Effects: Move the entity in a direction if move cooldown is smaller or equal to 0

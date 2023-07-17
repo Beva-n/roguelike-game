@@ -1,5 +1,6 @@
 package model;
 
+import model.map.Map1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +31,6 @@ public class PositionTest {
     void testEquals() {
         assertEquals(pos, new Position(1, 1));
         assertNotEquals(pos, new Position(1, 0));
+        assertNotEquals(pos, new Game());
     }
 }

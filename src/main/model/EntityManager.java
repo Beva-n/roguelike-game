@@ -32,13 +32,6 @@ public abstract class EntityManager {
         }
     }
 
-    //Modifies: screen
-    //Effects: draws all the entities in list on the screen
-    public void drawAll(Screen screen) {
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).draw(screen);
-        }
-    }
 
     //Modifies: this, game
     //Effects: Checks collision between entities

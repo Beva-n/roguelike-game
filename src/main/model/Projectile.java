@@ -7,7 +7,7 @@ import ui.TerminalGame;
 
 public class Projectile extends Entity {
 
-    private static final TextColor.RGB projectileColor = new TextColor.RGB(128, 0, 128);
+    public static final TextColor.RGB PROJECTILECOLOR = new TextColor.RGB(128, 0, 128);
     // may change speed to be none constant later
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 5;
     private final char direction;
@@ -35,14 +35,6 @@ public class Projectile extends Entity {
         move(direction);
         moveCooldown--;
         lifeTime--;
-    }
-
-    //Modifies: screen
-    //Effects: draws the projectile on the screen, as a purple circle
-    public void draw(Screen screen) {
-        TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(projectileColor);
-        text.putString(position.getX() * 2, position.getY() + 1, Game.BALL);
     }
 
     //Modifies: this

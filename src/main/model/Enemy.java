@@ -11,7 +11,7 @@ import java.util.Random;
 public class Enemy extends Entity {
 
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 1;
-    private static final TextColor.RGB COLOR = new TextColor.RGB(255, 0, 0);
+    public static final TextColor.RGB ENEMYCOLOR = new TextColor.RGB(255, 0, 0);
     private static final int ATTACKCD = 30;
     private Random rand = new Random();
     private int health = 30;
@@ -41,15 +41,6 @@ public class Enemy extends Entity {
             move("wasd".charAt(randomDirection));
         }
         attackCd--;
-    }
-
-    //Modifies: screen
-    //Effects: draws the enemy on the screen, as a red tile
-    public void draw(Screen screen) {
-        TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(COLOR);
-        text.putString(position.getX() * 2, position.getY() + 1, Game.BLOCK);
-        text.putString(position.getX() * 2 + 1, position.getY() + 1, Game.BLOCK);
     }
 
     //Requires: damage > 0

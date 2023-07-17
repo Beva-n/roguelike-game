@@ -20,9 +20,11 @@ public class PowerUpManagerTest {
 
     @Test
     void testAddPowerUps() {
+        assertEquals(0, powerUpManager.getLog().size());
         assertEquals(0, powerUpManager.getPowerUps().size());
         powerUpManager.addPowerUp(new AttackBlessing(game));
         assertEquals(1, powerUpManager.getPowerUps().size());
+        assertEquals(1, powerUpManager.getLog().size());
     }
 
     @Test

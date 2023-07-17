@@ -11,9 +11,9 @@ public abstract class Dungeon {
 
     protected ArrayList<Position> getWallTile;
     protected ArrayList<Position> doorTile;
-    private static final TextColor.RGB wallColor = new TextColor.RGB(150, 75,0);
-    private static final TextColor.RGB doorColor1 = new TextColor.RGB(255, 0, 0);
-    private static final TextColor.RGB doorColor2 = new TextColor.RGB(255, 255, 0);
+    public static final TextColor.RGB WALLCOLOR = new TextColor.RGB(150, 75,0);
+    public static final TextColor.RGB DOORCOLOR1 = new TextColor.RGB(255, 0, 0);
+    public static final TextColor.RGB DOORCOLOR2 = new TextColor.RGB(255, 255, 0);
     private Game game;
 
     //Effects: Constructs a basic map with outer walls and a door
@@ -42,27 +42,6 @@ public abstract class Dungeon {
             }
         }
         return false;
-    }
-
-    //Modifies: screen
-    //Effects: Draws all the wall and door tiles on the screen, door is red coloured if
-    //         enemies are not defeated and yellow coloured if they are
-    public void draw(Screen screen) {
-        TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(wallColor);
-        for (Position tile : getWallTile) {
-            text.putString(tile.getX() * 2, tile.getY() + 1, Game.BLOCK);
-            text.putString(tile.getX() * 2 + 1, tile.getY() + 1, Game.BLOCK);
-        }
-        if (game.roomCleared()) {
-            text.setForegroundColor(doorColor2);
-        } else {
-            text.setForegroundColor(doorColor1);
-        }
-        for (Position tile : doorTile) {
-            text.putString(tile.getX() * 2, tile.getY() + 1, Game.BLOCK);
-            text.putString(tile.getX() * 2 + 1, tile.getY() + 1, Game.BLOCK);
-        }
     }
 
     //Modifies: this

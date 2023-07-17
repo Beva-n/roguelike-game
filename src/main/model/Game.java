@@ -81,40 +81,6 @@ public class Game {
         projectileManager.updateAll();
     }
 
-    //Modifies: screen
-    //Effects: draws all the entities and the map on the screen
-    public void drawGame(Screen screen) {
-        // no drawing of the power up selection screen yet
-//        if (gameState) {
-//            projectileManager.drawAll(screen);
-//            player.draw(screen);
-//            enemyManager.drawAll(screen);
-//            map.draw(screen);
-//            drawStats(screen);
-//        } else {
-//            selectionScreen.draw(screen);
-//        }
-        projectileManager.drawAll(screen);
-        player.draw(screen);
-        enemyManager.drawAll(screen);
-        map.draw(screen);
-        drawStats(screen);
-    }
-
-    //Effects: displayed the attack/defense/health of the player on the screen
-    // as well as the current floor level
-    public void drawStats(Screen screen) {
-        TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(TEXT_COLOR);
-        text.putString(1, 0, "Hp: ");
-        text.putString(5, 0, String.valueOf(player.getHealth()));
-        text.putString(10, 0, "Def: ");
-        text.putString(16, 0, String.valueOf(player.getDefense()));
-        text.putString(20, 0, "ATK: ");
-        text.putString(26, 0, String.valueOf(player.getAttack()));
-        text.putString(70, 0, "LEVEL: ");
-        text.putString(78, 0, String.valueOf(floorLevel));
-    }
 
     //Effects: Creates a random map from the available map pool
     public Dungeon getRandomMap() {

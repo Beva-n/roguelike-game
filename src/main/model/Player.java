@@ -9,7 +9,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 public class Player extends Entity {
 
-    private static final TextColor color = TextColor.ANSI.GREEN;
+    public static final TextColor PLAYERCOLOR = TextColor.ANSI.GREEN;
     private static final int MOVECOOLDOWN = TerminalGame.FPS / 6;
     private String faceDirection;
     private int maxHealth = 100;
@@ -46,15 +46,6 @@ public class Player extends Entity {
     public void update() {
         moveCooldown--;
         shootCd--;
-    }
-
-    //Modifies: screen
-    //Effects: draw the player on the screen, as a green tile
-    public void draw(Screen screen) {
-        TextGraphics text = screen.newTextGraphics();
-        text.setForegroundColor(color);
-        text.putString(position.getX() * 2, position.getY() + 1, Game.BLOCK);
-        text.putString(position.getX() * 2 + 1, position.getY() + 1, Game.BLOCK);
     }
 
     //Modifies: game

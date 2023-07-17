@@ -58,4 +58,13 @@ public class GameTest {
         Map2 m2 = new Map2(game);
         assertTrue(m.getClass() == m2.getClass() || m.getClass() == m1.getClass());
     }
+
+    @Test
+    void testSetGameState() {
+        assertFalse(game.getGameState());
+        game.setGameState(true);
+        assertTrue(game.getGameState());
+        game.setGameState(false);
+        assertFalse(game.getGameState());
+    }
 }
