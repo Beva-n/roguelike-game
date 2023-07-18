@@ -56,10 +56,18 @@ public class GameTest {
 
     @Test
     void testGetRandomMap() {
-        Dungeon m = game.getRandomMap();
+        Dungeon m3 = game.getRandomMap();
+        Dungeon m4 = game.getRandomMap();
+        Dungeon m5 = game.getRandomMap();
+        Dungeon m6 = game.getRandomMap();
+        Dungeon m7 = game.getRandomMap();
         Map1 m1 = new Map1();
         Map2 m2 = new Map2();
-        assertTrue(m.getClass() == m2.getClass() || m.getClass() == m1.getClass());
+        assertTrue(m3.getClass() == m2.getClass() || m3.getClass() == m1.getClass());
+        assertTrue(m4.getClass() == m2.getClass() || m4.getClass() == m1.getClass());
+        assertTrue(m5.getClass() == m2.getClass() || m5.getClass() == m1.getClass());
+        assertTrue(m6.getClass() == m2.getClass() || m6.getClass() == m1.getClass());
+        assertTrue(m7.getClass() == m2.getClass() || m7.getClass() == m1.getClass());
     }
 
     @Test

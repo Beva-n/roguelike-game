@@ -85,7 +85,6 @@ public class Game {
     //Effects: Creates a random map from the available map pool
     public Dungeon getRandomMap() {
         int i = rand.nextInt(2);
-        System.out.println(i);
         switch (i) {
             case 1:
                 return new Map2();
