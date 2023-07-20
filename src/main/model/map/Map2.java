@@ -3,6 +3,7 @@ package model.map;
 import model.Dungeon;
 import model.Position;
 
+// represents a map with basic walls and additional wall tiles in the middle
 public class Map2 extends Dungeon {
 
     //Effects: Constructs a map with default walls and doors and an additional
@@ -25,7 +26,7 @@ public class Map2 extends Dungeon {
         int y = position.getY();
         for (int i = x; i < x + 4; i++) {
             for (int j = y; j < y + 4; j++) {
-                getWallTile.add(new Position(i, j));
+                wallTile.add(new Position(i, j));
             }
         }
     }

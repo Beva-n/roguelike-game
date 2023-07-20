@@ -5,6 +5,8 @@ import ui.TerminalGame;
 
 import java.util.Random;
 
+// Represents a enemy with properties of an entity
+// with additional fields health/attack/defense and attack cooldown
 public class Enemy extends Entity {
 
     private static final int MOVECOOLDOWN = TerminalGame.FPS;

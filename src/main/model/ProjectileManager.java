@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents the collection of all projectiles in the game
+// has a list of entity that stores the projectiles
 public class ProjectileManager extends EntityManager {
 
 

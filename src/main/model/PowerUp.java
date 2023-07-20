@@ -1,5 +1,7 @@
 package model;
 
+// Represents a power up with a name, description, the game its in, and
+// whether it is one time use or not
 public abstract class PowerUp {
 
     private final boolean oneUse;

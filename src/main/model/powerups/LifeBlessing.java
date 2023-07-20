@@ -5,6 +5,7 @@ import com.googlecode.lanterna.screen.Screen;
 import model.Game;
 import model.PowerUp;
 
+// represents a power up that boost the player's max hp
 public class LifeBlessing extends PowerUp {
     public static final String NAME = "LIFE BLESSING";
     public static final String DESCRIPTION = "increase max hp by 10 and heal 10 hp";

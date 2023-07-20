@@ -1,5 +1,7 @@
 package model;
 
+
+// represents a position with a x and y coordinate
 public class Position {
 
     private int posX;

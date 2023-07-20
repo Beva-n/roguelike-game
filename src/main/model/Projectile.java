@@ -3,6 +3,8 @@ package model;
 import com.googlecode.lanterna.TextColor;
 import ui.TerminalGame;
 
+// Represents a projectile with properties of an entity
+// with additional fields including a fixed direction, damage, and lifetime
 public class Projectile extends Entity {
 
     public static final TextColor.RGB PROJECTILECOLOR = new TextColor.RGB(128, 0, 128);

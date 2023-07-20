@@ -2,6 +2,9 @@ package model;
 
 import java.util.*;
 
+
+// Represents the collection of all the powersups obtained so far
+// has a Queue for power up obtained and a list of names of power up obtained
 public class PowerUpManager {
 
     private final Queue<PowerUp> oneTimePowerUps;

@@ -5,6 +5,7 @@ import com.googlecode.lanterna.screen.Screen;
 import model.Game;
 import model.PowerUp;
 
+// Represents a power up that heals the player
 public class HealingBlessing extends PowerUp {
 
     public static final String NAME = "HEAL BLESSING";

@@ -2,6 +2,8 @@ package model;
 
 import java.util.Random;
 
+// Represents the collection of all enemies in the game
+// has a list of entity that stores the enemies
 public class EnemyManager extends EntityManager {
     private final Random rand;
 

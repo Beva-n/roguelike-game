@@ -5,6 +5,7 @@ import com.googlecode.lanterna.screen.Screen;
 import model.Game;
 import model.PowerUp;
 
+// Represents a one time power up that boosts the player's defense
 public class DefenseBlessing extends PowerUp {
 
     public static final String NAME = "DEF BOOST";

@@ -3,6 +3,8 @@ package model;
 import com.googlecode.lanterna.TextColor;
 import ui.TerminalGame;
 
+// represents a player with parameters from entity and
+// hp/defense/attack/shoot cooldown/range and face direction
 public class Player extends Entity {
 
     public static final TextColor PLAYER_COLOR = TextColor.ANSI.GREEN;

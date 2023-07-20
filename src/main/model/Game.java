@@ -7,6 +7,8 @@ import ui.SelectionScreen;
 
 import java.util.Random;
 
+// Represents a game that manages all the elements of the game and updates them
+// has a projectile/enemy/power up manager, selection screen player, gamestate, map, and floor level
 public class Game {
 
     @SuppressWarnings({"checkstyle:AvoidEscapedUnicodeCharacters", "checkstyle:SuppressWarnings"})

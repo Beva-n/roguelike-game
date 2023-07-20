@@ -8,6 +8,8 @@ import model.*;
 
 import java.io.IOException;
 
+// Represents the terminal game
+// Displays all the elements of the game
 public class TerminalGame {
 
     public static final int FPS = 30;

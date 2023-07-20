@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// represents a collection of entity managed using a list
 public abstract class EntityManager {
 
 

@@ -1,5 +1,6 @@
 package model;
 
+// represents a entity with a position and move cooldown and the game its part of
 public abstract class Entity {
 
     private final int maxMoveCooldown;

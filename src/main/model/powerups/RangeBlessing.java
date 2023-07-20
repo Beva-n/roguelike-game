@@ -3,6 +3,7 @@ package model.powerups;
 import model.Game;
 import model.PowerUp;
 
+// represents a power up that increases the player's range
 public class RangeBlessing extends PowerUp {
     public static final String NAME = "RANGE BOOST";
     public static final String DESCRIPTION = "Slightly increase max projectile range";

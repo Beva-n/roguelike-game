@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+// Represents the selection screen
+// Holds and displays the pickable upgrades in the beginning of every turn
 public class SelectionScreen {
     private final Random rand = new Random();
     private final PowerUp[] choices = new PowerUp[3];
@@ -36,6 +38,7 @@ public class SelectionScreen {
         }
     }
 
+    //Requires: 0 <= i <= 4
     //Effects: Gets a power up depending on the number given
     public PowerUp getPowerUp(int i) {
         switch (i) {
