@@ -3,6 +3,9 @@ package model;
 import com.googlecode.lanterna.TextColor;
 import model.map.Map1;
 import model.map.Map2;
+import model.powerups.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import ui.SelectionScreen;
 
 import java.util.Random;
@@ -20,7 +23,7 @@ public class Game {
     private final Random rand = new Random();
 
     // true of ongoing, false for paused
-    private boolean gameState = false;
+    private boolean gameState = true;
     private int floorLevel = 1;
     private final Player player;
     private Dungeon map;
@@ -38,7 +41,6 @@ public class Game {
         projectileManager = new ProjectileManager(this);
         powerUpManager = new PowerUpManager();
         selectionScreen = new SelectionScreen(this);
-        selectionScreen.printChoices();
     }
 
     //Effects: Checks whether all the enemies are defeated in the map
@@ -95,6 +97,43 @@ public class Game {
         }
     }
 
+    //Requires: name corresponding to one of power ups
+    //Effects: Creates a power up with the corresponding name
+    public PowerUp getPowerUp(String name) {
+        switch (name) {
+            case "RANGE BOOST":
+                return new RangeBlessing(this);
+            case "LIFE BLESSING":
+                return new LifeBlessing(this);
+            case "DEF BOOST":
+                return new DefenseBlessing(this);
+            case "ATK BOOST":
+                return new AttackBlessing(this);
+            default:
+                return new HealingBlessing(this);
+        }
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("level", floorLevel);
+        json.put("buffs", buffsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns buffs obtained by the player as a JSON array
+    private JSONArray buffsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (String s : powerUpManager.getLog()) {
+            jsonArray.put(s);
+        }
+
+        return jsonArray;
+    }
+
+
+
     public int getFloorLevel() {
         return floorLevel;
     }
@@ -129,6 +168,10 @@ public class Game {
 
     public void setGameState(boolean state) {
         gameState = state;
+    }
+
+    public void setFloorLevel(int floorLevel) {
+        this.floorLevel = floorLevel;
     }
 
 }

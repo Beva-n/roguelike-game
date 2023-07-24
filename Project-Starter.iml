@@ -29,5 +29,6 @@
     </orderEntry>
     <orderEntry type="library" name="lanterna-3.03" level="project" />
     <orderEntry type="library" name="lanterna-3.0.3" level="project" />
+    <orderEntry type="library" name="Json" level="project" />
   </component>
 </module>

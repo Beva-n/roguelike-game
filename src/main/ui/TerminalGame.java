@@ -5,16 +5,26 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import model.*;
+import model.persistence.JsonReader;
+import model.persistence.JsonWriter;
+import org.json.JSONException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // Represents the terminal game
 // Displays all the elements of the game
 public class TerminalGame {
 
+    private static final String JSON_STORE = "./data/game.json";
     public static final int FPS = 30;
     private Screen screen;
     private Game game;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private boolean saved = false;
+    private boolean ended = false;
+    private char keyPressed;
 
     /**
      * Begins the game and method does not leave execution
@@ -27,6 +37,8 @@ public class TerminalGame {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
         game = new Game();
+        jsonReader = new JsonReader(JSON_STORE, game);
+        jsonWriter = new JsonWriter(JSON_STORE, game);
         // TerminalSize terminalSize = screen.getTerminalSize();
         startTick();
     }
@@ -34,7 +46,7 @@ public class TerminalGame {
     //Modifies: this
     //Effects: Start updating the game frame by frame
     public void startTick() throws IOException, InterruptedException {
-        while (true) {
+        while (!ended) {
             tick();
             Thread.sleep(1000L / FPS);
         }
@@ -47,6 +59,9 @@ public class TerminalGame {
         handleUserInput();
         screen.clear();
         game.updateGame();
+        if (game.getPlayer().getHealth() <= 0) {
+            endGame();
+        }
         render();
         screen.refresh();
     }
@@ -56,11 +71,13 @@ public class TerminalGame {
     // depending on key inputs
     private void handleUserInput() throws IOException {
         KeyStroke stroke = screen.pollInput();
-        char keyPressed;
         try {
             keyPressed = stroke.getCharacter();
         } catch (NullPointerException e) {
             return;
+        }
+        if (keyPressed == 'r') {
+            persistence();
         }
         if (game.getGameState()) {
             if ("wasd".indexOf(keyPressed) != -1) {
@@ -76,7 +93,63 @@ public class TerminalGame {
                 game.setGameState(true);
             }
         }
+    }
 
+    //Modifies: this
+    //Effects: Terminates the game
+    private void endGame() throws IOException {
+        ended = true;
+        screen.close();
+    }
+
+    private void persistence() throws IOException {
+        if (game.roomCleared() && game.getGameState() && !saved) {
+            saveGame();
+            endGame();
+        } else if (game.getFloorLevel() == 1 && game.getPowerUpManager().getLog().isEmpty()) {
+            loadGame();
+            clear();
+            game.setGameState(true);
+            saved = true;
+        } else {
+            System.out.println("Unable to perform this action");
+        }
+    }
+
+    //Effects: clears the saved data
+    private void clear() {
+        try {
+            jsonWriter.open();
+            jsonWriter.clear();
+            jsonWriter.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write();
+            jsonWriter.close();
+            System.out.println("success");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads game workroom from file
+    private void loadGame() {
+        try {
+            jsonReader.read();
+            System.out.println("Success");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (JSONException e) {
+            System.out.println("No existing save file");
+        }
     }
 
 
@@ -176,4 +249,6 @@ public class TerminalGame {
             System.out.println(" -" + names);
         }
     }
+
+
 }

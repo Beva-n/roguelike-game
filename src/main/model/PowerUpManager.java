@@ -1,5 +1,7 @@
 package model;
 
+import model.powerups.AttackBlessing;
+
 import java.util.*;
 
 
