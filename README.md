@@ -22,3 +22,24 @@ contribute to the ongoing evolution of the roguelike genre.
 - As a user, I want to be able to collect power-up items in my inventory
 - As a user, I want to be able to control the movement of my character
 - As a user, I want to be able to enter new levels of the dungeon by entering the gate
+- As a user, I want an explanation of the basic controls
+- As a user, I want to be able to save my progress one time every run
+- As a user, I want to be able to load my save before the run starts
+- (maybe) As a user, I want the enemy difficulty to scale with floor level
+
+## Gameplay
+- Kill all the enemies to proceed into the next room
+- Pick a new power up everytime you enter a new room
+
+## Controls
+- WASD to move the character
+- SPACE to shoot projectile
+- E to see the power ups obtains so far
+
+## Save
+- R key to save/load the game
+- Save can only be used after the enemies in a room is cleared 
+- Save will close the game automatically
+- Load can only be used during the first floor when enemies still persist
+- Each save file can only be loaded once before it is deleted from the saved data
+- There can only be one save file at a time
