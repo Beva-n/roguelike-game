@@ -20,7 +20,7 @@ public class GameTest {
     void testConstructor() {
         game.getSelectionScreen();
         assertTrue(game.getPowerUpManager().getPowerUps().isEmpty());
-        assertFalse(game.getGameState());
+        assertTrue(game.getGameState());
         assertEquals(1, game.getFloorLevel());
     }
 
@@ -43,11 +43,15 @@ public class GameTest {
     @Test
     void testUpdateGame() {
         assertEquals(0, game.getPlayer().getMoveCooldown());
+
+        game.setGameState(false);
         game.updateGame();
         assertEquals(0, game.getPlayer().getMoveCooldown());
+
         game.setGameState(true);
         game.updateGame();
         assertEquals(-1, game.getPlayer().getMoveCooldown());
+
         game.getEnemyManager().clearEntities();
         game.getPlayer().setPosition(new Position(39, 10));
         game.updateGame();
@@ -72,7 +76,7 @@ public class GameTest {
 
     @Test
     void testSetGameState() {
-        assertFalse(game.getGameState());
+        assertTrue(game.getGameState());
         game.setGameState(true);
         assertTrue(game.getGameState());
         game.setGameState(false);
