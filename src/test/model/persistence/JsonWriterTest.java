@@ -5,6 +5,7 @@ import model.powerups.AttackBlessing;
 import model.powerups.DefenseBlessing;
 import model.powerups.HealingBlessing;
 import model.powerups.LifeBlessing;
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -45,6 +46,28 @@ public class JsonWriterTest {
             assertTrue(game2.roomCleared());
             assertEquals(4, game2.getPowerUpManager().getPowerUps().size());
             assertEquals(4, game2.getPowerUpManager().getLog().size());
+        } catch (IOException e) {
+            fail("No exception expected");
+        }
+    }
+
+    @Test
+    void testWriteEmpty() {
+        try {
+            JsonWriter writer = new JsonWriter("./data/testWriterClear.json", new Game());
+            writer.open();
+            writer.clear();
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterClear.json", new Game());
+            try {
+                reader.read();
+                fail("expecting a JSONException");
+            } catch (IOException e) {
+                fail("expecting a JSONException");
+            } catch (JSONException e) {
+                // pass
+            }
         } catch (IOException e) {
             fail("No exception expected");
         }
