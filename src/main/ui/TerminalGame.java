@@ -102,6 +102,9 @@ public class TerminalGame {
         screen.close();
     }
 
+    //Modifies: this
+    //Effects: determines whether to not do anything/save the game/load from save based
+    //         on the current state of the game
     private void persistence() throws IOException {
         if (game.roomCleared() && game.getGameState() && !saved) {
             saveGame();

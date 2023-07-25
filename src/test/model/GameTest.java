@@ -2,6 +2,7 @@ package model;
 
 import model.map.Map1;
 import model.map.Map2;
+import model.powerups.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -81,5 +82,14 @@ public class GameTest {
         assertTrue(game.getGameState());
         game.setGameState(false);
         assertFalse(game.getGameState());
+    }
+
+    @Test
+    void testGetPowerUp() {
+        assertTrue(game.getPowerUp("ATK BOOST").getClass() == new AttackBlessing(game).getClass());
+        assertTrue(game.getPowerUp("DEF BOOST").getClass() == new DefenseBlessing(game).getClass());
+        assertTrue(game.getPowerUp("RANGE BOOST").getClass() == new RangeBlessing(game).getClass());
+        assertTrue(game.getPowerUp("LIFE BLESSING").getClass() == new LifeBlessing(game).getClass());
+        assertTrue(game.getPowerUp("HEALING BLESSING").getClass() == new HealingBlessing(game).getClass());
     }
 }
