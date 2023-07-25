@@ -31,7 +31,6 @@ public class JsonWriter {
     // EFFECTS: writes JSON representation of workroom to file
     public void write() {
         JSONObject json = game.toJson();
-        System.out.println(json.toString(TAB));
         saveToFile(json.toString(TAB));
     }
 
