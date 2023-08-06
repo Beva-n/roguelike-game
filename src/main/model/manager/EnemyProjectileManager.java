@@ -1,8 +1,7 @@
 package model.manager;
 
-import model.Enemy;
 import model.Game;
-import model.Projectile;
+import model.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;

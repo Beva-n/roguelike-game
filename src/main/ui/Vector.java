@@ -10,8 +10,6 @@ public class Vector {
     private double velocityY;
     private double accelerationX;
     private double accelerationY;
-    private double accelerationChangeX;
-    private double accelerationChangeY;
 
     //Effects: contstructs a new vector with a velocity and no acceleration
     //         automatically scales to the limit if it is over
@@ -25,16 +23,23 @@ public class Vector {
         limit(limit);
     }
 
-    public Vector(double x, double y, double accelerationX, double accelerationY,
-                  double changeX, double changeY, int time, int limit) {
+    public Vector(double x, double y, int time, int limit) {
         this.velocityX = x;
         this.velocityY = y;
         this.limit = limit;
         this.antiAccerlerationTime = time;
+        this.accelerationX = 0;
+        this.accelerationY = 0;
+        limit(limit);
+    }
+
+    public Vector(double x, double y, double accelerationX, double accelerationY, int limit) {
+        this.velocityX = x;
+        this.velocityY = y;
+        this.limit = limit;
+        this.antiAccerlerationTime = 100000;
         this.accelerationX = accelerationX;
         this.accelerationY = accelerationY;
-        this.accelerationChangeX = changeX;
-        this.accelerationChangeY = changeY;
         limit(limit);
     }
 
@@ -50,14 +55,12 @@ public class Vector {
 
     public void update() {
         if (antiAccerlerationTime == 0) {
-            limit = 3;
-            limit(2);
+            limit = 1;
+            limit(1);
         }
-        if (antiAccerlerationTime <= 0) {
+        if (antiAccerlerationTime > 0) {
             velocityX += accelerationX;
             velocityY += accelerationY;
-            accelerationX += accelerationChangeX;
-            accelerationY += accelerationChangeY;
             limit(limit);
         }
         antiAccerlerationTime--;
@@ -90,5 +93,9 @@ public class Vector {
 
     public int getVelocityY() {
         return (int) Math.round(velocityY);
+    }
+
+    public boolean manualUpdate() {
+        return antiAccerlerationTime <= 0;
     }
 }

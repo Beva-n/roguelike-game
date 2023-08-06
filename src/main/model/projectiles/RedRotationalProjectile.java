@@ -2,14 +2,45 @@ package model.projectiles;
 
 import model.Game;
 import model.Position;
-import model.Projectile;
 import ui.Vector;
 
 public class RedRotationalProjectile extends Projectile {
-    public RedRotationalProjectile(Position position, double dx, double dy, int damage, int lifetime, int limit, Game game) {
+
+    private Position position;
+    private int angle = 0;
+
+    public RedRotationalProjectile(Position position, double dx, double dy,
+                                   int damage, int lifetime, int limit, Game game) {
         super(position, damage, lifetime, game);
-        setVector(new Vector(dx, dy, 0., 0, 0.0005, 0.0003, 25, limit));
+        setVector(new Vector(dx, dy, 25, limit));
+        this.position = position;
         width = 18;
         height = 18;
     }
+
+      // not winnable rotation
+//    @Override
+//    public void move() {
+//        if (!getVector().manualUpdate()) {
+//            super.move();
+//        } else {
+//            double centerX = position.getX();
+//            double centerY = position.getY();
+//            double point2x = getX1() + getWidth() / 2;
+//            double point2y = getY1() + getWidth() / 2;
+//            angle -= 10;
+//            double x = Math.toRadians(angle);
+//
+//            double newX = centerX + (point2x - centerX) * Math.cos(x) - (point2y - centerY) * Math.sin(x);
+//            double newY = centerY + (point2x - centerX) * Math.sin(x) + (point2y - centerY) * Math.cos(x);
+////            setX(centerX + (point2x - centerX) * Math.cos(x) - (point2y - centerY) * Math.sin(x));
+////            setY(centerY + (point2x - centerX) * Math.sin(x) + (point2y - centerY) * Math.cos(x));
+//
+//            position.setPosX((int) Math.round(newX));
+//            position.setPosY((int)Math.round(newY));
+//            if (game.getMap().checkCollisionWall(this)) {
+//                touchWallAction();
+//            }
+//        }
+//    }
 }

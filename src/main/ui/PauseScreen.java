@@ -38,13 +38,13 @@ public class PauseScreen {
 
     public void setButtonColor() {
         if (game.roomCleared() && !gamePanel.getSaved()) {
-            saveButton.setColor(new Color(102, 0, 102));
+            saveButton.setColor(new Color(0, 128, 0));
         } else {
             saveButton.setColor(new Color(64, 64, 64));
         }
 
         if (game.getFloorLevel() == 1 && game.getPowerUpManager().getLog().isEmpty()) {
-            loadButton.setColor(new Color(102, 0, 102));
+            loadButton.setColor(new Color(0, 128, 0));
         } else {
             loadButton.setColor(new Color(64, 64, 64));
         }

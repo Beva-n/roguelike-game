@@ -7,6 +7,7 @@ import model.manager.PlayerProjectileManager;
 import model.map.Dungeon;
 import model.persistence.JsonReader;
 import model.persistence.JsonWriter;
+import model.projectiles.Projectile;
 import org.json.JSONException;
 
 import javax.swing.*;
@@ -56,6 +57,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void startGameThread() {
         gameThread = new Thread(this);
+        game.flipGameState();
+        pauseScreen.flipVisibility();
         gameThread.start();
     }
 

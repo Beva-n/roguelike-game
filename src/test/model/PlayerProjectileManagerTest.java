@@ -2,6 +2,7 @@ package model;
 
 import model.manager.EnemyManager;
 import model.manager.PlayerProjectileManager;
+import model.projectiles.Projectile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

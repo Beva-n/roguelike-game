@@ -55,6 +55,7 @@ public class Game {
     // and enemy manager
     public void newRoom() {
         player.reset();
+        player.heal(15);
         map = getRandomMap();
         playerProjectileManager = new PlayerProjectileManager(this);
         enemyManager = new EnemyManager(this, floorLevel);
@@ -98,6 +99,10 @@ public class Game {
     //Effects: Creates a power up with the corresponding name
     public PowerUp getPowerUp(String name) {
         switch (name) {
+            case "ATK SPD BOOST":
+                return new AttackSpeedBlessing(this);
+            case "SPEED BOOST":
+                return new SpeedBlessing(this);
             case "RANGE BOOST":
                 return new RangeBlessing(this);
             case "LIFE BLESSING":
@@ -187,6 +192,10 @@ public class Game {
 
     public void setFloorLevel(int floorLevel) {
         this.floorLevel = floorLevel;
+    }
+
+    public void setMap(Dungeon map) {
+        this.map = map;
     }
 
 }

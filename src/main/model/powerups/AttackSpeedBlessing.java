@@ -2,14 +2,13 @@ package model.powerups;
 
 import model.Game;
 
-// Represents a one time power up that increases player's attack
-public class AttackBlessing extends PowerUp {
+public class AttackSpeedBlessing extends PowerUp {
 
-    public static final String NAME = "ATK BOOST";
-    public static final String DESCRIPTION = "Increase attack by 7";
+    public static final String NAME = "ATK SPD BOOST";
+    public static final String DESCRIPTION = "Increase attack speed by a little bit";
 
     //Effects: Construct a one time use attack up powerup with a name, description
-    public AttackBlessing(Game g) {
+    public AttackSpeedBlessing(Game g) {
         super(true, NAME, DESCRIPTION, g);
     }
 
@@ -17,7 +16,7 @@ public class AttackBlessing extends PowerUp {
     //Effects: Increases the player's attack by 5
     @Override
     public void apply() {
-        game.getPlayer().editAttack(7);
+        game.getPlayer().editAttackSpeed(2);
     }
 
 //    @Override

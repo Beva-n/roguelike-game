@@ -14,7 +14,7 @@ public class Player extends Entity {
     private int maxDefense = 0;
     private int defense;
     private int attack;
-    private int maxAttack = 15;
+    private int maxAttack = 20;
     private int shootCd = 0;
     private int maxShootCd = 15;
     private int range = 40;
@@ -127,6 +127,18 @@ public class Player extends Entity {
     public void editAttack(int amount) {
         attack += amount;
         maxAttack += amount;
+    }
+
+    //Modifies: this
+    //Effects: decreases max shoot cd by amount, cannot be lowered lower than 5
+    public void editAttackSpeed(int amount) {
+        maxShootCd = Math.max(5, maxShootCd - amount);
+    }
+
+    //Modifies: this
+    //Effects: change the player's speed by amount
+    public void editSpeed(int amount) {
+        speed += amount;
     }
 
     //Modifies: this

@@ -3,8 +3,7 @@ package model.manager;
 import model.Enemy;
 import model.Entity;
 import model.Game;
-import model.Projectile;
-import model.manager.EntityManager;
+import model.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,8 @@
-package model;
+package model.projectiles;
 
+import model.Entity;
+import model.Game;
+import model.Position;
 import ui.Vector;
 
 import java.awt.*;
@@ -10,6 +13,9 @@ public class Projectile extends Entity {
 
     public static final Color PROJECTILE_COLOR = new Color(93, 63, 211);
     private Vector vector;
+    private double x1;
+    private double y1;
+
     private int lifeTime;
     private final int damage;
 
@@ -18,6 +24,8 @@ public class Projectile extends Entity {
         super(position, game);
         this.vector = vector;
         this.damage = damage;
+        x1 = position.getX();
+        y1 = position.getY();
         width = 16;
         height = 16;
         this.lifeTime = lifetime;
@@ -27,8 +35,11 @@ public class Projectile extends Entity {
     public Projectile(Position position, int damage, int lifetime, Game game) {
         super(position, game);
         this.damage = damage;
+        x1 = position.getX();
+        y1 = position.getY();
         this.lifeTime = lifetime;
     }
+
 
     //Modifies: this, game
     //Effects: if lifeTime is 0, deletes itself from the list of projectiles in game
@@ -45,8 +56,10 @@ public class Projectile extends Entity {
 
     public void move() {
         vector.update();
-        position.editPosX(vector.getVelocityX());
-        position.editPosY(vector.getVelocityY());
+        x1 += vector.getVelocityX();
+        y1 += vector.getVelocityY();
+        position.setPosX((int) Math.round(x1));
+        position.setPosY((int)Math.round(y1));
         if (game.getMap().checkCollisionWall(this)) {
             touchWallAction();
         }
@@ -108,6 +121,22 @@ public class Projectile extends Entity {
         game.getEnemyProjectileManager().remove(this);
     }
 
+    public double getX1() {
+        return x1;
+    }
+
+    public double getY1() {
+        return y1;
+    }
+
+    public void setX(double x) {
+        x1 = x;
+    }
+
+    public void setY(double y) {
+        y1 = y;
+    }
+
     public int getDamage() {
         return damage;
     }
@@ -126,5 +155,9 @@ public class Projectile extends Entity {
 
     public Color getColor() {
         return Color.red;
+    }
+
+    public Vector getVector() {
+        return vector;
     }
 }

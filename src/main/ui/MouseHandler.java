@@ -1,7 +1,7 @@
 package ui;
 
 import model.Game;
-import model.Projectile;
+import model.projectiles.Projectile;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

@@ -1,14 +1,21 @@
 package model;
 
-import com.googlecode.lanterna.TextColor;
+import model.projectiles.Projectile;
 import ui.Vector;
 
-import java.awt.*;
-import java.util.Random;
+import java.util.logging.Level;
+
+import static javax.swing.Spring.scale;
 
 // Represents a enemy with properties of an entity
 // with additional fields health/attack/defense and attack cooldown
 public class Enemy extends Entity {
+
+    private static final int HEALTH = 30;
+    private static final int DEFENSE = 1;
+    private static final int SPEED = 1;
+    private static final int BULLET_DAMAGE = 10;
+    private static final int CONTACT_DAMAGE = 20;
     private static final int ATTACKCD = 30;
     private static final int SHOOTCD = 60;
     private int health = 30;
@@ -20,9 +27,15 @@ public class Enemy extends Entity {
     private int speed = 5;
     private boolean moveAble = false;
 
+    //Effects: Constructs an enemy with scaled stats based on the level
+    public Enemy(Position position, int level, Game game) {
+        super(position, game);
+        scale(level);
+    }
+
     //Effects: Constructs an enemy with an initial start position, health of 30, defense of 0
     //         attack of 40, move cooldown of 1s, and attack cooldown of 1s
-    public Enemy(Position position, Game game) {
+    public Enemy(Position position,  Game game) {
         super(position, game);
     }
 
@@ -69,8 +82,22 @@ public class Enemy extends Entity {
         double dx = game.getPlayerX() - position.getX();
         double dy = game.getPlayerY() - position.getY();
         game.getEnemyProjectileManager().spawn(new Projectile(getCenter(),
-                new Vector(dx, dy, 10), bulletDamage,
-                10, game));
+                new Vector(dx, dy, 7), bulletDamage,
+                100, game));
+    }
+
+    public void scale(int level) {
+        level = level - 1;
+        bulletDamage += Math.round(BULLET_DAMAGE * level * 0.1);
+        health += Math.round(HEALTH * level * 0.1);
+        contactDamage += Math.round(CONTACT_DAMAGE * level * 0.1);
+        defense += Math.round(DEFENSE * level);
+        speed += Math.floor(level / 4);
+        System.out.println(bulletDamage);
+        System.out.println(health);
+        System.out.println(contactDamage);
+        System.out.println(defense);
+        System.out.println(speed);
     }
 
     //Requires: damage > 0

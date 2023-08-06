@@ -77,7 +77,7 @@ public class SelectionScreen {
     public void randomPowerUps() {
         Set<Integer> randomChoices = new HashSet<>();
         while (randomChoices.size() < 3) {
-            randomChoices.add(rand.nextInt(5));
+            randomChoices.add(rand.nextInt(7));
         }
         int index = 0;
         for (int i : randomChoices) {
@@ -90,6 +90,10 @@ public class SelectionScreen {
     //Effects: Gets a power up depending on the number given
     public PowerUp getPowerUp(int i) {
         switch (i) {
+            case 6:
+                return new AttackSpeedBlessing(game);
+            case 5:
+                return new SpeedBlessing(game);
             case 4:
                 return new RangeBlessing(game);
             case 3:

@@ -6,7 +6,7 @@ import model.Game;
 public class DefenseBlessing extends PowerUp {
 
     public static final String NAME = "DEF BOOST";
-    public static final String DESCRIPTION = "Increase defense by 3";
+    public static final String DESCRIPTION = "Increase defense by 4";
 
     //Effects: Construct a one time use defense up powerup with a name, description
     public DefenseBlessing(Game g) {
@@ -17,7 +17,7 @@ public class DefenseBlessing extends PowerUp {
     //Effects: Increases the player's defense by 3
     @Override
     public void apply() {
-        game.getPlayer().editDefense(3);
+        game.getPlayer().editDefense(4);
     }
 
 //    @Override

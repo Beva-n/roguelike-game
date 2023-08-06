@@ -5,6 +5,7 @@ import model.Enemy;
 import model.Game;
 import model.Position;
 import model.manager.EntityManager;
+import model.map.Map1;
 
 import java.util.Random;
 
@@ -24,21 +25,26 @@ public class EnemyManager extends EntityManager {
     //Modifies: this
     //Effects: spawns a given amount of enemies in random locations on the map
     public void spawn(int count) {
-//        while (count > 0) {
-//            int y = rand.nextInt(500) + 40;
-//            int x = rand.nextInt(700) + 200;
-//
-//            // comment out before running test bc coverage too hard :skull:
-//            if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), game))) {
-//                continue;
-//            }
-//            super.spawn(new Enemy(new Position(x, y), game));
-//
-//            // use to pass test
-////            super.spawn(makeValidEnemy(x, y));
-//            count--;
-//        }
-        spawn(new Boss(game));
+        int level = count - 2;
+        if ((count - 2) % 5 == 0) {
+            super.spawn(new Boss(level, game));
+            game.setMap(new Map1());
+            return;
+        }
+        while (count > 0) {
+            int y = rand.nextInt(500) + 40;
+            int x = rand.nextInt(700) + 200;
+
+            // comment out before running test bc coverage too hard :skull:
+            if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), level, game))) {
+                continue;
+            }
+            super.spawn(new Enemy(new Position(x, y), level, game));
+
+            // use to pass test
+//            super.spawn(makeValidEnemy(x, y));
+            count--;
+        }
     }
 
     //Modifies: game
@@ -56,13 +62,13 @@ public class EnemyManager extends EntityManager {
         }
     }
 
-    public Enemy makeValidEnemy(int x, int y) {
-        if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), game))) {
-            return new Enemy(new Position(500, 400), game);
-        } else {
-            return new Enemy(new Position(x, y), game);
-        }
-    }
+//    public Enemy makeValidEnemy(int x, int y) {
+//        if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), game))) {
+//            return new Enemy(new Position(500, 400), game);
+//        } else {
+//            return new Enemy(new Position(x, y), game);
+//        }
+//    }
 
 
 }
