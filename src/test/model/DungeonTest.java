@@ -1,11 +1,11 @@
 package model;
 
+import model.map.Dungeon;
 import model.map.Map1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DungeonTest {
 
@@ -18,18 +18,8 @@ public class DungeonTest {
 
     @Test
     void testBuildBasicWalls() {
-        // walls
-        assertTrue(map.getWallTile().contains(new Position(0, 0)));
-        assertTrue(map.getWallTile().contains(new Position(0, 22)));
-        assertTrue(map.getWallTile().contains(new Position(39, 0)));
-        assertTrue(map.getWallTile().contains(new Position(39, 22)));
-        assertFalse(map.getWallTile().contains(new Position(1, 1)));
+        assertEquals(5, map.getWallTile().size());
 
-        // doors
-        assertTrue(map.getDoorTile().contains(new Position(39, 10)));
-        assertTrue(map.getDoorTile().contains(new Position(39, 11)));
-        assertTrue(map.getDoorTile().contains(new Position(39, 12)));
-        assertFalse(map.getDoorTile().contains(new Position(39, 13)));
     }
 
     @Test

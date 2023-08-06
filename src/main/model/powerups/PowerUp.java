@@ -1,4 +1,6 @@
-package model;
+package model.powerups;
+
+import model.Game;
 
 // Represents a power up with a name, description, the game its in, and
 // whether it is one time use or not

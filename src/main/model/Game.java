@@ -1,36 +1,33 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import model.map.Map1;
-import model.map.Map2;
+import model.manager.EnemyManager;
+import model.manager.EnemyProjectileManager;
+import model.manager.PlayerProjectileManager;
+import model.map.*;
 import model.powerups.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import ui.SelectionScreen;
 
 import java.util.Random;
 
 // Represents a game that manages all the elements of the game and updates them
 // has a projectile/enemy/power up manager, selection screen player, gamestate, map, and floor level
 public class Game {
-
-    @SuppressWarnings({"checkstyle:AvoidEscapedUnicodeCharacters", "checkstyle:SuppressWarnings"})
-    public static final String BLOCK = String.valueOf('\u2588');
-    @SuppressWarnings({"checkstyle:AvoidEscapedUnicodeCharacters", "checkstyle:SuppressWarnings"})
-    public static final String BALL = String.valueOf('\u2B24');
     public static final TextColor.RGB TEXT_COLOR = new TextColor.RGB(255, 255, 255);
 
     private final Random rand = new Random();
 
     // true of ongoing, false for paused
     private boolean gameState = true;
+    private boolean selectionState = false;
     private int floorLevel = 1;
     private final Player player;
     private Dungeon map;
     private EnemyManager enemyManager;
-    private ProjectileManager projectileManager;
+    private PlayerProjectileManager playerProjectileManager;
+    private EnemyProjectileManager enemyProjectileManager;
     private final PowerUpManager powerUpManager;
-    private SelectionScreen selectionScreen;
 
     //Effects: Constructs a new paused game with a new player, map, enemy manager, projectile manager
     // and selection screen, and a base floor level of 1
@@ -38,9 +35,9 @@ public class Game {
         player = new Player(this);
         map = new Map1();
         enemyManager = new EnemyManager(this, floorLevel);
-        projectileManager = new ProjectileManager(this);
+        playerProjectileManager = new PlayerProjectileManager(this);
+        enemyProjectileManager = new EnemyProjectileManager(this);
         powerUpManager = new PowerUpManager();
-        selectionScreen = new SelectionScreen(this);
     }
 
     //Effects: Checks whether all the enemies are defeated in the map
@@ -50,7 +47,7 @@ public class Game {
 
     //Effects: Checks whether the room is cleared and player is interacting with the door
     public boolean nextLevel() {
-        return roomCleared() && getMap().checkCollisionDoor(player.getPosition());
+        return roomCleared() && getMap().checkCollisionDoor(player);
     }
 
     //Modifies: this
@@ -59,7 +56,7 @@ public class Game {
     public void newRoom() {
         player.reset();
         map = getRandomMap();
-        projectileManager = new ProjectileManager(this);
+        playerProjectileManager = new PlayerProjectileManager(this);
         enemyManager = new EnemyManager(this, floorLevel);
     }
 
@@ -75,14 +72,14 @@ public class Game {
         if (nextLevel()) {
             floorLevel++;
             newRoom();
-            gameState = false;
-            selectionScreen = new SelectionScreen(this);
-            selectionScreen.printChoices();
+            flipGameState();
+            flipSelectionState();
         }
         powerUpManager.update();
         player.update();
         enemyManager.updateAll();
-        projectileManager.updateAll();
+        playerProjectileManager.updateAll();
+        enemyProjectileManager.updateAll();
     }
 
 
@@ -132,7 +129,13 @@ public class Game {
         return jsonArray;
     }
 
+    public void flipGameState() {
+        gameState = !gameState;
+    }
 
+    public void flipSelectionState() {
+        selectionState = !selectionState;
+    }
 
     public int getFloorLevel() {
         return floorLevel;
@@ -140,6 +143,10 @@ public class Game {
 
     public boolean getGameState() {
         return gameState;
+    }
+
+    public boolean getSelectionState() {
+        return selectionState;
     }
 
     public Player getPlayer() {
@@ -150,20 +157,28 @@ public class Game {
         return map;
     }
 
+    public int getPlayerX() {
+        return player.getPosition().getX();
+    }
+
+    public int getPlayerY() {
+        return player.getPosition().getY();
+    }
+
     public EnemyManager getEnemyManager() {
         return enemyManager;
     }
 
-    public ProjectileManager getProjectileManager() {
-        return projectileManager;
+    public PlayerProjectileManager getPlayerProjectileManager() {
+        return playerProjectileManager;
+    }
+
+    public EnemyProjectileManager getEnemyProjectileManager() {
+        return enemyProjectileManager;
     }
 
     public PowerUpManager getPowerUpManager() {
         return powerUpManager;
-    }
-
-    public SelectionScreen getSelectionScreen() {
-        return selectionScreen;
     }
 
     public void setGameState(boolean state) {

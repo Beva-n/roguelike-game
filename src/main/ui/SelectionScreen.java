@@ -1,9 +1,10 @@
 package ui;
 
 import model.Game;
-import model.PowerUp;
+import model.powerups.PowerUp;
 import model.powerups.*;
 
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -11,16 +12,63 @@ import java.util.Set;
 // Represents the selection screen
 // Holds and displays the pickable upgrades in the beginning of every turn
 public class SelectionScreen {
+
+    private CustomButton button1;
+    private CustomButton button2;
+    private CustomButton button3;
     private final Random rand = new Random();
     private final PowerUp[] choices = new PowerUp[3];
     private final Game game;
+    private final GamePanel gamePanel;
+    private boolean visibility = false;
 
 
     //Effects: Constructs a new selection screen that generates random power ups for the player to
     // choose from, creates 1 instance of selection upon creation
-    public SelectionScreen(Game game) {
+    public SelectionScreen(Game game, GamePanel gamePanel) {
         this.game = game;
+        this.gamePanel = gamePanel;
         randomPowerUps();
+
+        button1 = new CustomButton("Pick Me!");
+        button1.addActionListener(e -> choose(0));
+        button1.setBounds(new Rectangle(230, 390, 100, 50));
+
+        button2 = new CustomButton("Pick Me!");
+        button2.addActionListener(e -> choose(1));
+        button2.setBounds(new Rectangle(450, 390, 100, 50));
+
+        button3 = new CustomButton("Pick Me!");
+        button3.addActionListener(e -> choose(2));
+        button3.setBounds(new Rectangle(670, 390, 100, 50));
+
+        gamePanel.add(button1);
+        gamePanel.add(button2);
+        gamePanel.add(button3);
+
+        setVisibility();
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(new Color(9, 121, 105));
+        g.fillRoundRect(200, 140, 160, 320, 50, 50);
+        g.fillRoundRect(420, 140, 160, 320, 50, 50);
+        g.fillRoundRect(640, 140, 160, 320, 50, 50);
+
+        g.setColor(Color.white);
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+        g.drawString(choices[0].getName(), 220, 160);
+        g.drawString(choices[1].getName(), 440, 160);
+        g.drawString(choices[2].getName(), 660, 160);
+
+        //maybe draw sprite????
+
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 8));
+        g.drawString(choices[0].getDescription(), 205, 375);
+        g.drawString(choices[1].getDescription(), 425, 375);
+        g.drawString(choices[2].getDescription(), 645, 375);
+
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
     }
 
     //Modifies: this
@@ -57,25 +105,23 @@ public class SelectionScreen {
 
     //Modifies: game
     //Effects: Adds a power up to the player's obtained power ups based on the player input
-    public void choose(char i) {
-        int index = Character.getNumericValue(i);
-        game.getPowerUpManager().addPowerUp(choices[index - 1]);
+    //         Then returns the game to an un-paused state
+    public void choose(int i) {
+        game.getPowerUpManager().addPowerUp(choices[i]);
         System.out.println("Power up selected!");
+        game.flipSelectionState();
+        game.flipGameState();
+        flipVisibility();
     }
 
-    // next user story LMAO
-//    public void draw(Screen screen) {
-//        for (PowerUp p : choices) {
-//            p.drawCard(screen);
-//        }
-//    }
+    public void setVisibility() {
+        button1.setVisible(visibility);
+        button2.setVisible(visibility);
+        button3.setVisible(visibility);
+    }
 
-    //Effects: Prints out all the power ups obtained so far by the player on the terminal screen
-    public void printChoices() {
-        System.out.println("Confirm the power up choice by pressing number keys");
-        for (int i = 1; i <= 3; i++) {
-            System.out.println(i + " - " + choices[i - 1].getName());
-            System.out.println(choices[i - 1].getDescription());
-        }
+    public void flipVisibility() {
+        visibility = !visibility;
+        setVisibility();
     }
 }

@@ -8,23 +8,23 @@ import ui.TerminalGame;
 public class Player extends Entity {
 
     public static final TextColor PLAYER_COLOR = TextColor.ANSI.GREEN;
-    private static final int MOVE_COOLDOWN = TerminalGame.FPS / 6;
     private String faceDirection;
     private int maxHealth = 100;
     private int health;
-    private int maxDefense = 20;
+    private int maxDefense = 0;
     private int defense;
     private int attack;
     private int maxAttack = 15;
     private int shootCd = 0;
     private int maxShootCd = 15;
-    private int range = 50;
+    private int range = 40;
+    private int speed = 3;
 
     //Effects: Constructs a player with hp/max hp of 100, attack/max attack of 15
     //         def/ max def of 20, a range of 50, a face direction of right
     //         a shootcd of half a second, and a fixed starting position
     public Player(Game game) {
-        super(new Position(1, 6), MOVE_COOLDOWN, game);
+        super(new Position(60, 232), game);
         faceDirection = "right";
         this.health = maxHealth;
         this.defense = maxDefense;
@@ -34,7 +34,7 @@ public class Player extends Entity {
     //Modifies: this
     //Effects: reset the player to default position
     public void reset() {
-        setPosition(new Position(1, 6));
+        setPosition(new Position(60, 232));
         // this.defense = maxDefense;
         // this.attack = maxAttack;
     }
@@ -42,69 +42,77 @@ public class Player extends Entity {
     //Modifies: this
     //Effects: Reduces the player's move cooldown and shoot cool down by 1 respectively
     public void update() {
-        moveCooldown--;
         shootCd--;
     }
 
-    //Modifies: game
-    //Effects: if shoot cooldown is greater than 0, nothing happens
-    //         if shoot cooldwon is less than or equal to 0, spawn a projectile flying towards
-    //         the player's face direction
-    public void shoot() {
-        if (shootCd > 0) {
-            return;
-        }
-        shootCd = maxShootCd;
-        switch (faceDirection) {
-            case "down":
-                game.getProjectileManager().spawn(new Projectile(
-                        new Position(position.getX(), position.getY() + 1), 's', attack, game));
-                return;
-            case "up":
-                game.getProjectileManager().spawn(new Projectile(
-                        new Position(position.getX(), position.getY() - 1), 'w', attack, game));
-                return;
-            case "left":
-                game.getProjectileManager().spawn(new Projectile(
-                        new Position(position.getX() - 1, position.getY()), 'a', attack, game));
-                return;
-            default:
-                game.getProjectileManager().spawn(new Projectile(
-                        new Position(position.getX() + 1, position.getY()), 'd', attack, game));
+    public void move(int x, int y) {
+        position.editPosX(x);
+        position.editPosY(y);
+        if (game.getMap().checkCollisionWall(this)) {
+            position.editPosX(-x);
+            position.editPosY(-y);
         }
     }
 
-    //Modifies: this
-    //Effects: same as entity plus change face direction to right
-    @Override
-    public void moveRight() {
-        super.moveRight();
-        faceDirection = "right";
-    }
-
-    //Modifies: this
-    //Effects: same as entity plus change face direction to left
-    @Override
-    public void moveLeft() {
-        super.moveLeft();
-        faceDirection = "left";
-    }
-
-    //Modifies: this
-    //Effects: same as entity plus change face direction to up
-    @Override
-    public void moveUp() {
-        super.moveUp();
-        faceDirection = "up";
-    }
-
-    //Modifies: this
-    //Effects: same as entity plus change face direction to down
-    @Override
-    public void moveDown() {
-        super.moveDown();
-        faceDirection = "down";
-    }
+//    //Modifies: game
+//    //Effects: if shoot cooldown is greater than 0, nothing happens
+//    //         if shoot cooldwon is less than or equal to 0, spawn a projectile flying towards
+//    //         the player's face direction
+//    public void shoot() {
+//        if (shootCd > 0) {
+//            return;
+//        }
+//        shootCd = maxShootCd;
+//        switch (faceDirection) {
+//            case "down":
+//                game.getProjectileManager().spawn(new Projectile(
+//                        new Position(position.getX(), position.getY() + 1), 's', attack, game));
+//                return;
+//            case "up":
+//                game.getProjectileManager().spawn(new Projectile(
+//                        new Position(position.getX(), position.getY() - 1), 'w', attack, game));
+//                return;
+//            case "left":
+//                game.getProjectileManager().spawn(new Projectile(
+//                        new Position(position.getX() - 1, position.getY()), 'a', attack, game));
+//                return;
+//            default:
+//                game.getProjectileManager().spawn(new Projectile(
+//                        new Position(position.getX() + 1, position.getY()), 'd', attack, game));
+//        }
+//    }
+//
+//    //Modifies: this
+//    //Effects: same as entity plus change face direction to right
+//    @Override
+//    public void moveRight() {
+//        super.moveRight();
+//        faceDirection = "right";
+//    }
+//
+//    //Modifies: this
+//    //Effects: same as entity plus change face direction to left
+//    @Override
+//    public void moveLeft() {
+//        super.moveLeft();
+//        faceDirection = "left";
+//    }
+//
+//    //Modifies: this
+//    //Effects: same as entity plus change face direction to up
+//    @Override
+//    public void moveUp() {
+//        super.moveUp();
+//        faceDirection = "up";
+//    }
+//
+//    //Modifies: this
+//    //Effects: same as entity plus change face direction to down
+//    @Override
+//    public void moveDown() {
+//        super.moveDown();
+//        faceDirection = "down";
+//    }
 
     //Requires: damage > 0
     //Modifies: this
@@ -146,6 +154,10 @@ public class Player extends Entity {
         health = Math.min(health + amount, maxHealth);
     }
 
+    public void resetShootCd() {
+        shootCd = maxShootCd;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -170,8 +182,16 @@ public class Player extends Entity {
         return maxHealth;
     }
 
+    public double getHealthLost() {
+        return 100 * (1.0 - (double) health / (double) maxHealth);
+    }
+
     public String getFaceDirection() {
         return faceDirection;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public void setFaceDirection(String faceDirection) {
@@ -181,5 +201,6 @@ public class Player extends Entity {
     public void setShootCd(int shootCd) {
         this.shootCd = shootCd;
     }
+
 
 }

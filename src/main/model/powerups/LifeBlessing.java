@@ -1,9 +1,6 @@
 package model.powerups;
 
-import com.googlecode.lanterna.Symbols;
-import com.googlecode.lanterna.screen.Screen;
 import model.Game;
-import model.PowerUp;
 
 // represents a power up that boost the player's max hp
 public class LifeBlessing extends PowerUp {

@@ -1,7 +1,5 @@
 package model.map;
 
-import model.Dungeon;
-
 // represents a map with basic walls
 public class Map1 extends Dungeon {
 

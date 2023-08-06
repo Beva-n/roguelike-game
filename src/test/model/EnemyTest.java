@@ -19,7 +19,7 @@ public class EnemyTest {
     @Test
     void testConstructor() {
         assertEquals(30, enemy.getHealth());
-        assertEquals(40, enemy.getAttack());
+        assertEquals(40, enemy.getContactDamage());
         assertEquals(0, enemy.getDefense());
         assertEquals(0, enemy.getMoveCooldown());
         assertEquals(new Position(15, 15), enemy.getPosition());

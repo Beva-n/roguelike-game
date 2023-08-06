@@ -76,10 +76,10 @@ public class ProjectileTest {
 
     @Test
     void testTouchWallAction() {
-        game.getProjectileManager().spawn(leftProjectile);
-        assertEquals(1, game.getProjectileManager().getEntities().size());
+        game.getPlayerProjectileManager().spawn(leftProjectile);
+        assertEquals(1, game.getPlayerProjectileManager().getEntities().size());
         leftProjectile.setPosition(new Position(38, 21));
         leftProjectile.moveDown();
-        assertEquals(0, game.getProjectileManager().getEntities().size());
+        assertEquals(0, game.getPlayerProjectileManager().getEntities().size());
     }
 }

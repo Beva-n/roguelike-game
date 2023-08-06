@@ -1,5 +1,6 @@
 package model;
 
+import model.map.Dungeon;
 import model.map.Map1;
 import model.map.Map2;
 import model.powerups.*;
@@ -19,7 +20,6 @@ public class GameTest {
 
     @Test
     void testConstructor() {
-        game.getSelectionScreen();
         assertTrue(game.getPowerUpManager().getPowerUps().isEmpty());
         assertTrue(game.getGameState());
         assertEquals(1, game.getFloorLevel());

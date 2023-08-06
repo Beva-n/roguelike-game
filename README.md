@@ -43,3 +43,11 @@ contribute to the ongoing evolution of the roguelike genre.
 - Load can only be used during the first floor when enemies still persist
 - Each save file can only be loaded once before it is deleted from the saved data
 - There can only be one save file at a time
+
+## To-Do
+- new ai for enemy
+- new enemy type
+- active ability kind of power ups
+- panels to display power ups
+- power up selection screen
+- (maybe) pause function that displays buttons that saves/loads, and maybe power ups collected so far

@@ -1,6 +1,7 @@
 package model;
 
 import model.powerups.AttackBlessing;
+import model.powerups.PowerUp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

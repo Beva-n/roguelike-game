@@ -1,6 +1,6 @@
 package model;
 
-import model.powerups.AttackBlessing;
+import model.powerups.PowerUp;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class PowerUpManager {
 //        else {
 //            powerUps.add(powerUp);
 //        }
-        log.add(powerUp.name);
+        log.add(powerUp.getName());
     }
 
     public Queue<PowerUp> getPowerUps() {

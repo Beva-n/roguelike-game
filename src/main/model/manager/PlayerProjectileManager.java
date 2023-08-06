@@ -1,16 +1,22 @@
-package model;
+package model.manager;
+
+import model.Enemy;
+import model.Entity;
+import model.Game;
+import model.Projectile;
+import model.manager.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents the collection of all projectiles in the game
 // has a list of entity that stores the projectiles
-public class ProjectileManager extends EntityManager {
+public class PlayerProjectileManager extends EntityManager {
 
 
-    //Effects: Constructs a Projectile Manager that keep track of all the projectiles in the game
+    //Effects: Constructs a Projectile Manager that keep track of all the player projectiles in the game
     //         using a list
-    public ProjectileManager(Game game) {
+    public PlayerProjectileManager(Game game) {
         super(game);
     }
 
@@ -24,7 +30,7 @@ public class ProjectileManager extends EntityManager {
             for (int j = 0; j < enemies.size(); j++) {
                 Projectile p = ((Projectile) getEntities().get(i));
                 Enemy e = ((Enemy) enemies.get(j));
-                if (p.getPosition().equals(e.getPosition())) {
+                if (p.getHitBox().intersects(e.getHitBox())) {
                     e.reduceHealth(p.getDamage());
                     removeList.add(p);
                     if (e.getHealth() <= 0) {

@@ -1,5 +1,7 @@
 package model;
 
+import model.manager.EntityManager;
+import model.manager.PlayerProjectileManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +17,9 @@ public class EntityManagerTest {
     @BeforeEach
     void runBefore() {
         game = new Game();
-        entityManager = new ProjectileManager(game);
-        projectile1 = new Projectile(new Position(1, 1), 'd', 10, game);
-        projectile2 = new Projectile(new Position(2, 1), 'd', 10, game);
+        entityManager = new PlayerProjectileManager(game);
+//        projectile1 = new Projectile(new Position(1, 1), 'd', 10, game);
+//        projectile2 = new Projectile(new Position(2, 1), 'd', 10, game);
     }
 
     @Test

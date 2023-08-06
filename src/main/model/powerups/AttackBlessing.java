@@ -1,7 +1,6 @@
 package model.powerups;
 
 import model.Game;
-import model.PowerUp;
 
 // Represents a one time power up that increases player's attack
 public class AttackBlessing extends PowerUp {

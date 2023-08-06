@@ -1,5 +1,6 @@
 package model;
 
+import model.manager.EnemyManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,9 +45,9 @@ public class EnemyManagerTest {
 
     @Test
     void testValidPosition() {
-        Position p2 = enemyManager.makeValidPosition(15 ,15);
+        Position p2 = enemyManager.makeValidEnemy(15 ,15);
         assertEquals(new Position(15, 15), p2);
-        Position p1 = enemyManager.makeValidPosition(0 ,0);
+        Position p1 = enemyManager.makeValidEnemy(0 ,0);
         assertEquals(new Position(38, 10), p1);
     }
 }

@@ -1,7 +1,6 @@
 package model.powerups;
 
 import model.Game;
-import model.PowerUp;
 
 // represents a power up that increases the player's range
 public class RangeBlessing extends PowerUp {

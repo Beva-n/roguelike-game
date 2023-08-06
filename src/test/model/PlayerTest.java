@@ -44,11 +44,11 @@ public class PlayerTest {
 
     @Test
     void testShoot() {
-        assertEquals(0, game.getProjectileManager().getEntities().size());
+        assertEquals(0, game.getPlayerProjectileManager().getEntities().size());
         player.shoot();
-        assertEquals(1, game.getProjectileManager().getEntities().size());
+        assertEquals(1, game.getPlayerProjectileManager().getEntities().size());
         player.shoot();
-        assertEquals(1, game.getProjectileManager().getEntities().size());
+        assertEquals(1, game.getPlayerProjectileManager().getEntities().size());
         player.setShootCd(0);
         player.setFaceDirection("left");
         player.shoot();
@@ -58,7 +58,7 @@ public class PlayerTest {
         player.setShootCd(0);
         player.setFaceDirection("down");
         player.shoot();
-        assertEquals(4, game.getProjectileManager().getEntities().size());
+        assertEquals(4, game.getPlayerProjectileManager().getEntities().size());
     }
 
     @Test

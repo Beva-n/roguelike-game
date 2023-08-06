@@ -1,9 +1,6 @@
 package model.powerups;
 
-import com.googlecode.lanterna.Symbols;
-import com.googlecode.lanterna.screen.Screen;
 import model.Game;
-import model.PowerUp;
 
 // Represents a power up that heals the player
 public class HealingBlessing extends PowerUp {

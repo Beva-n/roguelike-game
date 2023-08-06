@@ -1,4 +1,7 @@
-package model;
+package model.manager;
+
+import model.Entity;
+import model.Game;
 
 import java.util.ArrayList;
 import java.util.List;

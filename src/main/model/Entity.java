@@ -1,26 +1,34 @@
 package model;
 
+import org.w3c.dom.css.Rect;
+
+import java.awt.*;
+
 // represents a entity with a position and move cooldown and the game its part of
 public abstract class Entity {
 
     private final int maxMoveCooldown;
     protected Position position;
     protected int moveCooldown = 0;
+    protected int width;
+    protected int height;
     protected Game game;
 
-    //Effects: Constructs a entity with given position, a given max movecooldown and
-    //         a initial movecooldown of 0
-    public Entity(Position position, int moveCooldown, Game game) {
+    //Effects: Constructs an entity with given position, a given max movecooldown and
+    //         an initial movecooldown of 0
+    public Entity(Position position, Game game) {
         this.position = position;
         this.maxMoveCooldown = moveCooldown;
         this.game = game;
+        width = 24;
+        height = 24;
     }
 
     //Modifies: this
     //Effects: updates some fields of the entity
     public abstract void update();
 
-    //REQUIRES: direction == 'a' or 's' or 'w' or 'd'
+/*    //REQUIRES: direction == 'a' or 's' or 'w' or 'd'
     //Modifies: this
     //Effects: Move the entity in a direction if move cooldown is smaller or equal to 0
     public void move(char direction) {
@@ -77,22 +85,38 @@ public abstract class Entity {
             return;
         }
         position.editPosY(1);
-    }
+    }*/
 
 
     public Position getPosition() {
         return position;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public void setPosition(Position position) {
         this.position = position;
     }
 
-    public int getMoveCooldown() {
-        return moveCooldown;
+//    public int getMoveCooldown() {
+//        return moveCooldown;
+//    }
+//
+//    public void setMovecooldown(int cooldown) {
+//        moveCooldown = cooldown;
+//    }
+
+    public Rectangle getHitBox() {
+        return new Rectangle(position.getX(), position.getY(), width, height);
     }
 
-    public void setMovecooldown(int cooldown) {
-        moveCooldown = cooldown;
+    public Position getCenter() {
+        return new Position(position.getX() + width / 2, position.getY() + height / 2);
     }
 }
