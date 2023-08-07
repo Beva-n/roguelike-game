@@ -27,8 +27,8 @@ public class RangeBlessingTest {
 
     @Test
     void testApply() {
-        assertEquals(50, game.getPlayer().getRange());
+        assertEquals(40, game.getPlayer().getRange());
         rangeBlessing.apply();
-        assertEquals(55, game.getPlayer().getRange());
+        assertEquals(45, game.getPlayer().getRange());
     }
 }

@@ -28,8 +28,10 @@ public class HealingBlessingTest {
     @Test
     void testApply() {
         game.getPlayer().decreaseHealth(50);
-        assertEquals(70, game.getPlayer().getHealth());
+        assertEquals(50, game.getPlayer().getHealth());
         healingBlessing.apply();
         assertEquals(90, game.getPlayer().getHealth());
+        healingBlessing.apply();
+        assertEquals(100, game.getPlayer().getHealth());
     }
 }

@@ -26,8 +26,8 @@ public class DefenseBlessingTest {
 
     @Test
     void testApply() {
-        assertEquals(20, game.getPlayer().getDefense());
+        assertEquals(0, game.getPlayer().getDefense());
         defBlessing.apply();
-        assertEquals(23, game.getPlayer().getDefense());
+        assertEquals(4, game.getPlayer().getDefense());
     }
 }

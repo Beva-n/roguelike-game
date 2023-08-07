@@ -27,8 +27,8 @@ public class AttackBlessingTest {
 
     @Test
     void testApply() {
-        assertEquals(15, game.getPlayer().getAttack());
-        atkBlessing.apply();
         assertEquals(20, game.getPlayer().getAttack());
+        atkBlessing.apply();
+        assertEquals(27, game.getPlayer().getAttack());
     }
 }

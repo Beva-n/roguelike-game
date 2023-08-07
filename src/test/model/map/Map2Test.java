@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,23 +20,11 @@ public class Map2Test {
 
     @Test
     void testConstructor() {
-        assertFalse(map2.getWallTile().contains(new Position(1, 1)));
-        assertTrue(map2.getWallTile().contains(new Position(7, 5)));
-        assertTrue(map2.getWallTile().contains(new Position(7, 14)));
-        assertTrue(map2.getWallTile().contains(new Position(17, 5)));
-        assertTrue(map2.getWallTile().contains(new Position(17, 14)));
-        assertTrue(map2.getWallTile().contains(new Position(27, 5)));
-        assertTrue(map2.getWallTile().contains(new Position(27, 14)));
-    }
-
-    @Test
-    void testAddPillar() {
-        map2.clear();
-        map2.addPillar4x4(new Position(1, 1));
-        assertTrue(map2.getWallTile().contains(new Position(1, 1)));
-        assertTrue(map2.getWallTile().contains(new Position(1, 4)));
-        assertTrue(map2.getWallTile().contains(new Position(4, 1)));
-        assertTrue(map2.getWallTile().contains(new Position(4, 4)));
-        assertFalse(map2.getWallTile().contains(new Position(1, 5)));
+        assertFalse(map2.getWallTile().contains(new Rectangle(180, 150, 100, 190)));
+        assertTrue(map2.getWallTile().contains(new Rectangle(420, 150, 100, 100)));
+        assertTrue(map2.getWallTile().contains(new Rectangle(660, 150, 100, 100)));
+        assertTrue(map2.getWallTile().contains(new Rectangle(180, 390, 100, 100)));
+        assertTrue(map2.getWallTile().contains(new Rectangle(420, 390, 100, 100)));
+        assertTrue(map2.getWallTile().contains(new Rectangle(660, 390, 100, 100)));
     }
 }

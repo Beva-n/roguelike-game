@@ -1,9 +1,15 @@
-package model;
+package model.manager;
 
+import model.Entity;
+import model.Game;
+import model.Position;
 import model.manager.EntityManager;
 import model.manager.PlayerProjectileManager;
+import model.projectiles.Projectile;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,8 +24,9 @@ public class EntityManagerTest {
     void runBefore() {
         game = new Game();
         entityManager = new PlayerProjectileManager(game);
-//        projectile1 = new Projectile(new Position(1, 1), 'd', 10, game);
-//        projectile2 = new Projectile(new Position(2, 1), 'd', 10, game);
+        projectile1 = new Projectile(new Position(80, 80), new Vector(0, 1, 1), 10, 20, game);
+        projectile2 = new Projectile(new Position(80, 80), new Vector(0, -1, 1), 10, 20, game);
+
     }
 
     @Test
@@ -35,8 +42,8 @@ public class EntityManagerTest {
         entityManager.spawn(projectile1);
         entityManager.spawn(projectile2);
         entityManager.updateAll();
-        assertEquals(entityManager.getEntities().get(0).getPosition(), new Position(2, 1));
-        assertEquals(entityManager.getEntities().get(1).getPosition(), new Position(3, 1));
+        Assertions.assertEquals(entityManager.getEntities().get(0).getPosition(), new Position(80, 81));
+        assertEquals(entityManager.getEntities().get(1).getPosition(), new Position(80, 79));
     }
 
     @Test

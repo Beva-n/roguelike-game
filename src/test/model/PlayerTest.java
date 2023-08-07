@@ -17,93 +17,74 @@ public class PlayerTest {
     }
 
     @Test
+    void testScaleWithLevel() {
+        player.scaleWithLevel();
+        assertEquals(130, player.getHealth());
+        assertEquals(27, player.getAttack());
+        assertEquals(4, player.getDefense());
+        assertEquals(4, player.getSpeed());
+    }
+
+    @Test
+    void testScaleWithLevel2() {
+        player.scaleWithLevel(11);
+        assertEquals(160, player.getHealth());
+        assertEquals(34, player.getAttack());
+        assertEquals(8, player.getDefense());
+        assertEquals(5, player.getSpeed());
+    }
+
+    @Test
+    void testMove() {
+        player.move(1, 1);
+        assertEquals(new Position(61, 233), player.getPosition());
+        player.move(-40, 0);
+        assertEquals(new Position(61, 233), player.getPosition());
+    }
+
+    @Test
     void testConstructor() {
         assertEquals(100, player.getHealth());
-        assertEquals(15, player.getAttack());
-        assertEquals(20, player.getDefense());
-        assertEquals(new Position(1, 6), player.getPosition());
-        assertEquals(50, player.getRange());
-        assertEquals("right", player.getFaceDirection());
+        assertEquals(20, player.getAttack());
+        assertEquals(0, player.getDefense());
+        assertEquals(new Position(60, 232), player.getPosition());
+        assertEquals(40, player.getRange());
+        assertEquals(3, player.getSpeed());
     }
 
     @Test
     void testReset() {
         player.setPosition(new Position(15 ,15));
         player.reset();
-        assertEquals(new Position(1, 6), player.getPosition());
+        assertEquals(new Position(60, 232), player.getPosition());
     }
 
     @Test
     void testUpdate() {
         assertEquals(0, player.getShootCd());
-        assertEquals(0, player.getMoveCooldown());
         player.update();
         assertEquals(-1, player.getShootCd());
-        assertEquals(-1, player.getMoveCooldown());
     }
 
-    @Test
-    void testShoot() {
-        assertEquals(0, game.getPlayerProjectileManager().getEntities().size());
-        player.shoot();
-        assertEquals(1, game.getPlayerProjectileManager().getEntities().size());
-        player.shoot();
-        assertEquals(1, game.getPlayerProjectileManager().getEntities().size());
-        player.setShootCd(0);
-        player.setFaceDirection("left");
-        player.shoot();
-        player.setShootCd(0);
-        player.setFaceDirection("up");
-        player.shoot();
-        player.setShootCd(0);
-        player.setFaceDirection("down");
-        player.shoot();
-        assertEquals(4, game.getPlayerProjectileManager().getEntities().size());
-    }
-
-    @Test
-    void testMoveRight() {
-        player.setFaceDirection("left");
-        player.moveRight();
-        assertEquals("right", player.getFaceDirection());
-    }
-
-    @Test
-    void testMoveLeft() {
-        player.moveLeft();
-        assertEquals("left", player.getFaceDirection());
-    }
-
-    @Test
-    void testMoveUp() {
-        player.moveUp();
-        assertEquals("up", player.getFaceDirection());
-    }
-
-    @Test
-    void testMoveDown() {
-        player.moveDown();
-        assertEquals("down", player.getFaceDirection());
-    }
 
     @Test
     void testDecreaseHealth() {
         player.decreaseHealth(40);
-        assertEquals(80, player.getHealth());
+        assertEquals(60, player.getHealth());
         player.decreaseHealth(10);
-        assertEquals(79, player.getHealth());
+        assertEquals(50, player.getHealth());
     }
 
     @Test
     void testEditAttack() {
         player.editAttack(5);
-        assertEquals(20, player.getAttack());
+        assertEquals(25, player.getAttack());
     }
 
     @Test
     void testEditDefense() {
         player.editDefense(100);
-        assertEquals(120, player.getDefense());
+        assertEquals(100, player.getDefense());
     }
 
     @Test
@@ -115,7 +96,7 @@ public class PlayerTest {
 
     @Test
     void testHeal() {
-        player.decreaseHealth(110);
+        player.decreaseHealth(90);
         assertEquals(10, player.getHealth());
         player.heal(20);
         assertEquals(30, player.getHealth());

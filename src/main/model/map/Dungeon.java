@@ -48,12 +48,16 @@ public abstract class Dungeon {
     //Modifies: this
     //Effects: Adds the outer walls and a door to the map
     public void buildBasicWalls() {
+        // vertical wall
         wallTile.add(new Rectangle(0, 40, 40, 560));
         wallTile.add(new Rectangle(960, 40, 40, 230));
-        wallTile.add(new Rectangle(960, 370, 50, 230));
+        wallTile.add(new Rectangle(960, 370, 40, 230));
+
+        // horizontal wall
         wallTile.add(new Rectangle(40, 40, 920, 40));
         wallTile.add(new Rectangle(40, 560, 920, 40));
 
+        // door
         doorTile.add(new Rectangle(960, 270, 40, 100));
 //        // up wall
 //        for (int i = 0; i < 40; i++) {

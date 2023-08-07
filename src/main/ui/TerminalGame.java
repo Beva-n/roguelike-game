@@ -14,7 +14,7 @@ import java.io.IOException;
 
 // Represents the terminal game
 // Displays all the elements of the game
-public class TerminalGame {
+//public class TerminalGame {
 //
 //    private static final String JSON_STORE = "./data/game.json";
 //    public static final int FPS = 30;
@@ -252,4 +252,4 @@ public class TerminalGame {
 //            System.out.println(" -" + names);
 //        }
 //    }
-}
+//}

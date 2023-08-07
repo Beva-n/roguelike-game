@@ -4,6 +4,8 @@ import model.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Map1Test {
@@ -17,9 +19,9 @@ public class Map1Test {
 
     @Test
     void testConstructor() {
-        assertTrue(map1.getWallTile().contains(new Position(0, 1)));
-        assertTrue(map1.getWallTile().contains(new Position(0, 5)));
-        assertTrue(map1.getWallTile().contains(new Position(0, 14)));
+        assertTrue(map1.getWallTile().contains(new Rectangle(0, 40, 40, 560)));
+        assertTrue(map1.getWallTile().contains(new Rectangle(960, 40, 40, 230)));
+        assertTrue(map1.getWallTile().contains(new Rectangle(960, 370, 40, 230)));
 
     }
 

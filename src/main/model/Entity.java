@@ -7,9 +7,7 @@ import java.awt.*;
 // represents a entity with a position and move cooldown and the game its part of
 public abstract class Entity {
 
-    private final int maxMoveCooldown;
     protected Position position;
-    protected int moveCooldown = 0;
     protected int width;
     protected int height;
     protected Game game;
@@ -18,7 +16,6 @@ public abstract class Entity {
     //         an initial movecooldown of 0
     public Entity(Position position, Game game) {
         this.position = position;
-        this.maxMoveCooldown = moveCooldown;
         this.game = game;
         width = 24;
         height = 24;
@@ -103,14 +100,6 @@ public abstract class Entity {
     public void setPosition(Position position) {
         this.position = position;
     }
-
-//    public int getMoveCooldown() {
-//        return moveCooldown;
-//    }
-//
-//    public void setMovecooldown(int cooldown) {
-//        moveCooldown = cooldown;
-//    }
 
     public Rectangle getHitBox() {
         return new Rectangle(position.getX(), position.getY(), width, height);

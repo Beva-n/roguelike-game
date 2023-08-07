@@ -121,6 +121,13 @@ public class Projectile extends Entity {
         game.getEnemyProjectileManager().remove(this);
     }
 
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
+        x1 = position.getX();
+        y1 = position.getY();
+    }
+
     public double getX1() {
         return x1;
     }

@@ -25,7 +25,9 @@ contribute to the ongoing evolution of the roguelike genre.
 - As a user, I want an explanation of the basic controls
 - As a user, I want to be able to save my progress one time every run
 - As a user, I want to be able to load my save before the run starts
-- (maybe) As a user, I want the enemy difficulty to scale with floor level
+- As a user, I want the enemy difficulty to scale with floor level
+- As a user, I want to be able to encounter a boss enemy on certain floors
+- (hard maybe) As a user, I want to have an active ability
 
 ## Gameplay
 - Kill all the enemies to proceed into the next room
@@ -45,9 +47,5 @@ contribute to the ongoing evolution of the roguelike genre.
 - There can only be one save file at a time
 
 ## To-Do
-- new ai for enemy
-- new enemy type
-- active ability kind of power ups
-- panels to display power ups
-- power up selection screen
-- (maybe) pause function that displays buttons that saves/loads, and maybe power ups collected so far
+- (hard maybe) active ability kind of power ups
+- player passive stats gain

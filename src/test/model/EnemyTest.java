@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EnemyTest {
@@ -13,16 +15,33 @@ public class EnemyTest {
     @BeforeEach
     void runBefore() {
         game = new Game();
-        enemy = new Enemy(new Position(15, 15), game);
+        enemy = new Enemy(new Position(100, 100), game);
     }
 
     @Test
     void testConstructor() {
         assertEquals(30, enemy.getHealth());
-        assertEquals(40, enemy.getContactDamage());
+        assertEquals(20, enemy.getContactDamage());
         assertEquals(0, enemy.getDefense());
-        assertEquals(0, enemy.getMoveCooldown());
-        assertEquals(new Position(15, 15), enemy.getPosition());
+        assertEquals(new Position(100, 100), enemy.getPosition());
+    }
+
+    @Test
+    void testMove() {
+        enemy.move();
+        assertNotEquals(new Position(100, 100), enemy.getPosition());
+        game.getMap().getWallTile().add(new Rectangle(0, 0, 1000, 1000));
+        Position newPos = new Position(enemy.getPosition().getX(), enemy.getPosition().getY());
+        enemy.move();
+        assertEquals(newPos, enemy.getPosition());
+    }
+
+    @Test
+    void testScale() {
+        enemy.scale(2);
+        assertEquals(33, enemy.getHealth());
+        assertEquals(22, enemy.getContactDamage());
+        assertEquals(1, enemy.getDefense());
     }
 
     @Test
@@ -31,14 +50,14 @@ public class EnemyTest {
         game.getEnemyManager().spawn(enemy);
         assertEquals(1, game.getEnemyManager().getEntities().size());
         enemy.update();
-        assertNotEquals(new Position(15, 15), enemy.getPosition());
-        assertNotEquals(0, enemy.getMoveCooldown());
+        assertEquals(new Position(100, 100), enemy.getPosition());
+        assertEquals(1, game.getEnemyProjectileManager().getEntities().size());
+        assertEquals(59, enemy.getShootCd());
         assertEquals(-1, enemy.getAttackcd());
-        Position newPos = new Position(enemy.getPosition().getX(), enemy.getPosition().getY());
-        int i = enemy.getMoveCooldown();
         enemy.update();
-        assertEquals(newPos, enemy.getPosition());
-        assertEquals(i-1, enemy.getMoveCooldown());
+        assertNotEquals(new Position(100, 100), enemy.getPosition());
+        assertEquals(1, game.getEnemyProjectileManager().getEntities().size());
+        assertEquals(58, enemy.getShootCd());
         assertEquals(-2, enemy.getAttackcd());
 
         enemy.reduceHealth(30);

@@ -62,13 +62,13 @@ public class EnemyManager extends EntityManager {
         }
     }
 
-//    public Enemy makeValidEnemy(int x, int y) {
-//        if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), game))) {
-//            return new Enemy(new Position(500, 400), game);
-//        } else {
-//            return new Enemy(new Position(x, y), game);
-//        }
-//    }
+    public Enemy makeValidEnemy(int x, int y) {
+        if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), game))) {
+            return new Enemy(new Position(500, 400), game);
+        } else {
+            return new Enemy(new Position(x, y), game);
+        }
+    }
 
 
 }

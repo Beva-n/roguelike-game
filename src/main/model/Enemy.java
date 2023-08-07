@@ -3,12 +3,9 @@ package model;
 import model.projectiles.Projectile;
 import ui.Vector;
 
-import java.util.logging.Level;
 
-import static javax.swing.Spring.scale;
-
-// Represents a enemy with properties of an entity
-// with additional fields health/attack/defense and attack cooldown
+// Represents an enemy with properties of an entity
+// with additional fields health/attack/defense and attack cooldowns
 public class Enemy extends Entity {
 
     private static final int HEALTH = 30;
@@ -93,11 +90,6 @@ public class Enemy extends Entity {
         contactDamage += Math.round(CONTACT_DAMAGE * level * 0.1);
         defense += Math.round(DEFENSE * level);
         speed += Math.floor(level / 4);
-        System.out.println(bulletDamage);
-        System.out.println(health);
-        System.out.println(contactDamage);
-        System.out.println(defense);
-        System.out.println(speed);
     }
 
     //Requires: damage > 0
@@ -131,6 +123,10 @@ public class Enemy extends Entity {
 
     public int getAttackcd() {
         return attackCd;
+    }
+
+    public int getShootCd() {
+        return shootCd;
     }
 
     public int getSpeed() {

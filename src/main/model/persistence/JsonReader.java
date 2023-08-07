@@ -46,6 +46,7 @@ public class JsonReader {
     // EFFECTS: parses game from JSON object and load it into current game
     private void parseGame(JSONObject jsonObject) {
         game.setFloorLevel(jsonObject.getInt("level"));
+        game.getPlayer().scaleWithLevel(jsonObject.getInt("level"));
         JSONArray jsonArray = jsonObject.getJSONArray("buffs");
         for (Object o : jsonArray) {
             game.getPowerUpManager().addPowerUp(game.getPowerUp(((String)o)));

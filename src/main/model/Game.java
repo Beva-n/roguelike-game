@@ -54,6 +54,9 @@ public class Game {
     //Effects: resets the player location, regenerates a map, and resets projectile
     // and enemy manager
     public void newRoom() {
+        if ((floorLevel - 1) % 5 == 0) {
+            player.scaleWithLevel();
+        }
         player.reset();
         player.heal(15);
         map = getRandomMap();

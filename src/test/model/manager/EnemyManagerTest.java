@@ -1,5 +1,8 @@
-package model;
+package model.manager;
 
+import model.Enemy;
+import model.Game;
+import model.Position;
 import model.manager.EnemyManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +32,9 @@ public class EnemyManagerTest {
         assertEquals(3, enemyManager.getEntities().size());
         enemyManager.spawn(8);
         assertEquals(11, enemyManager.getEntities().size());
+        enemyManager.clearEntities();
+        enemyManager.spawn(7);
+        assertEquals(1, enemyManager.getEntities().size());
     }
 
     @Test
@@ -44,10 +50,12 @@ public class EnemyManagerTest {
     }
 
     @Test
-    void testValidPosition() {
-        Position p2 = enemyManager.makeValidEnemy(15 ,15);
-        assertEquals(new Position(15, 15), p2);
-        Position p1 = enemyManager.makeValidEnemy(0 ,0);
-        assertEquals(new Position(38, 10), p1);
+    void testMakeValidEnemy() {
+        Enemy enemy1 = enemyManager.makeValidEnemy(40, 40);
+        Enemy enemy2 = enemyManager.makeValidEnemy(80, 80);
+        assertEquals(500, enemy1.getPosition().getX());
+        assertEquals(400, enemy1.getPosition().getY());
+        assertEquals(80, enemy2.getPosition().getX());
+        assertEquals(80, enemy2.getPosition().getY());
     }
 }

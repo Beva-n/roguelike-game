@@ -1,14 +1,11 @@
 package model;
 
 import com.googlecode.lanterna.TextColor;
-import ui.TerminalGame;
 
 // represents a player with parameters from entity and
 // hp/defense/attack/shoot cooldown/range and face direction
 public class Player extends Entity {
 
-    public static final TextColor PLAYER_COLOR = TextColor.ANSI.GREEN;
-    private String faceDirection;
     private int maxHealth = 100;
     private int health;
     private int maxDefense = 0;
@@ -25,7 +22,6 @@ public class Player extends Entity {
     //         a shootcd of half a second, and a fixed starting position
     public Player(Game game) {
         super(new Position(60, 232), game);
-        faceDirection = "right";
         this.health = maxHealth;
         this.defense = maxDefense;
         this.attack = maxAttack;
@@ -51,6 +47,21 @@ public class Player extends Entity {
         if (game.getMap().checkCollisionWall(this)) {
             position.editPosX(-x);
             position.editPosY(-y);
+        }
+    }
+
+    public void scaleWithLevel() {
+        editSpeed(1);
+        editAttack(7);
+        editHealth(30);
+        heal(30);
+        editDefense(4);
+    }
+
+    public void scaleWithLevel(int level) {
+        int count = (level - (level % 5)) / 5;
+        for (int i = 0; i < count; i++) {
+            scaleWithLevel();
         }
     }
 
@@ -198,16 +209,12 @@ public class Player extends Entity {
         return 100 * (1.0 - (double) health / (double) maxHealth);
     }
 
-    public String getFaceDirection() {
-        return faceDirection;
-    }
-
     public int getSpeed() {
         return speed;
     }
 
-    public void setFaceDirection(String faceDirection) {
-        this.faceDirection = faceDirection;
+    public int getMaxShootCd() {
+        return maxShootCd;
     }
 
     public void setShootCd(int shootCd) {

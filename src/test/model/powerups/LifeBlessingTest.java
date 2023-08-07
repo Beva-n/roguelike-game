@@ -30,6 +30,6 @@ public class LifeBlessingTest {
     void testApply() {
         assertEquals(100, game.getPlayer().getHealth());
         lifeBlessing.apply();
-        assertEquals(110, game.getPlayer().getHealth());
+        assertEquals(120, game.getPlayer().getHealth());
     }
 }

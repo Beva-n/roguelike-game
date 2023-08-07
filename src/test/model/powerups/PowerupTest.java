@@ -1,5 +1,6 @@
-package model;
+package model.powerups;
 
+import model.Game;
 import model.powerups.AttackBlessing;
 import model.powerups.PowerUp;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ public class PowerupTest {
     void testConstructor() {
         assertTrue(p.getOneUse());
         assertEquals("ATK BOOST", p.getName());
-        assertEquals("Increase attack by 5", p.getDescription());
+        assertEquals("Increase attack by 7", p.getDescription());
     }
 
 }

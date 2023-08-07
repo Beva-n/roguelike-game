@@ -37,26 +37,34 @@ public class GameTest {
         assertFalse(game.nextLevel());
         game.getEnemyManager().clearEntities();
         assertFalse(game.nextLevel());
-        game.getPlayer().setPosition(new Position(39, 10));
+        game.getPlayer().setPosition(new Position(960, 270));
         assertTrue(game.nextLevel());
     }
 
     @Test
-    void testUpdateGame() {
-        assertEquals(0, game.getPlayer().getMoveCooldown());
+    void testNewRoom() {
+        game.setFloorLevel(6);
+        game.newRoom();
+        assertEquals(4, game.getPlayer().getDefense());
+        assertEquals(27, game.getPlayer().getAttack());
+        assertEquals(130, game.getPlayer().getHealth());
+    }
 
+    @Test
+    void testUpdateGame() {
+        assertEquals(0, game.getPlayer().getShootCd());
         game.setGameState(false);
         game.updateGame();
-        assertEquals(0, game.getPlayer().getMoveCooldown());
+        assertEquals(0, game.getPlayer().getShootCd());
 
         game.setGameState(true);
         game.updateGame();
-        assertEquals(-1, game.getPlayer().getMoveCooldown());
+        assertEquals(-1, game.getPlayer().getShootCd());
 
         game.getEnemyManager().clearEntities();
-        game.getPlayer().setPosition(new Position(39, 10));
+        game.getPlayer().setPosition(new Position(960, 270));
         game.updateGame();
-        assertEquals(new Position(1, 6), game.getPlayer().getPosition());
+        assertEquals(new Position(60, 232), game.getPlayer().getPosition());
     }
 
     @Test

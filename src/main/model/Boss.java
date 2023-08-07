@@ -12,13 +12,9 @@ public class Boss extends Enemy {
     private static final int DEFENSE = 10;
 
     private static final int DAMAGE = 10;
-
-    private static int DOWNTIME = 10;
-    private int downtime = 0;
     private int moveset = 0;
     private int moveDowntime = 0;
     private int damage = 10;
-    private boolean moveable = false;
 
     public Boss(int level, Game game) {
         super(new Position(800, 260), game);
@@ -43,18 +39,8 @@ public class Boss extends Enemy {
             return;
         }
 
-        //downtime stuff
-        if (downtime > 0) {
-            downtime--;
-            return;
-        }
-
         //movement
-        if (moveable) {
-            move();
-        } else {
-            moveable = true;
-        }
+        move();
 
         //bullet pattern
         if (moveDowntime <= 0) {
@@ -72,7 +58,7 @@ public class Boss extends Enemy {
         position.editPosY(movement.getVelocityY());
         Rectangle aroundPlayer = new Rectangle(game.getPlayerX() - 60, game.getPlayerY() - 60,
                 120 + game.getPlayer().getWidth(), 120 + game.getPlayer().getHeight());
-        if (game.getMap().checkCollisionWall(this) || aroundPlayer.intersects(getHitBox())) {
+        if (aroundPlayer.intersects(getHitBox())) {
             position.editPosX(-movement.getVelocityX());
             position.editPosY(-movement.getVelocityY());
         }
@@ -97,7 +83,7 @@ public class Boss extends Enemy {
             case 0:
                 blueRotational();
                 break;
-            case 2:
+            default:
                 pinkRing();
         }
     }
@@ -122,7 +108,6 @@ public class Boss extends Enemy {
         if (posX == 20 + getWidth()) {
             moveset = 0;
             moveDowntime = 0;
-            downtime = 45;
         }
     }
 
@@ -166,7 +151,7 @@ public class Boss extends Enemy {
         spawnPinkRing(10, -10);
         spawnPinkRing(-10, 10);
         spawnPinkRing(10, 10);
-        moveDowntime = 45;
+        moveDowntime = 40;
         moveset++;
     }
 
@@ -194,7 +179,8 @@ public class Boss extends Enemy {
         spawnRedRotational(10, 10);
         moveDowntime = 45;
         if (moveset == 4) {
-            moveDowntime = 30;
+            pinkRing();
+            return;
         }
         moveset++;
     }
@@ -214,7 +200,7 @@ public class Boss extends Enemy {
     public void spawnPinkRing(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new PinkRingProjectile(
-                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 400, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 180, game));
     }
 
     public void spawnRedRotational(double x, double y) {
@@ -235,5 +221,13 @@ public class Boss extends Enemy {
                 new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 7,game));
         enemyProjectileManager.spawn(new BlueRotationalProjectile(
                 new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 4, game));
+    }
+
+    public int getMoveset() {
+        return moveset;
+    }
+
+    public int getMoveDowntime() {
+        return moveDowntime;
     }
 }
