@@ -35,14 +35,14 @@ public class EnemyManager extends EntityManager {
             int y = rand.nextInt(500) + 40;
             int x = rand.nextInt(700) + 200;
 
-            // comment out before running test bc coverage too hard :skull:
-            if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), level, game))) {
-                continue;
-            }
-            super.spawn(new Enemy(new Position(x, y), level, game));
+//            // comment out before running test bc coverage too hard :skull:
+//            if (game.getMap().checkCollisionWall(new Enemy(new Position(x, y), level, game))) {
+//                continue;
+//            }
+//            super.spawn(new Enemy(new Position(x, y), level, game));
 
             // use to pass test
-//            super.spawn(makeValidEnemy(x, y));
+            super.spawn(makeValidEnemy(x, y));
             count--;
         }
     }
