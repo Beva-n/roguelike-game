@@ -8,7 +8,7 @@ import ui.Vector;
 import java.awt.*;
 
 // Represents a projectile with properties of an entity
-// with additional fields including a fixed direction, damage, and lifetime
+// with additional fields including a vector, damage, and lifetime
 public class Projectile extends Entity {
 
     public static final Color PROJECTILE_COLOR = new Color(93, 63, 211);
@@ -19,7 +19,7 @@ public class Projectile extends Entity {
     private int lifeTime;
     private final int damage;
 
-    //Effects: constructs a projectile with given direction, position, and damage
+    //Effects: constructs a projectile with a vector, direction, damage, lifetime, and a fixed size
     public Projectile(Position position, Vector vector, int damage, int lifetime, Game game) {
         super(position, game);
         this.vector = vector;
@@ -32,6 +32,8 @@ public class Projectile extends Entity {
     }
 
 
+    //Effects: Constructs a projectile with position damage lifetime and game, the constructor
+    //         does not require a vector and therefore needed the vector to be added later manually
     public Projectile(Position position, int damage, int lifetime, Game game) {
         super(position, game);
         this.damage = damage;
@@ -54,6 +56,9 @@ public class Projectile extends Entity {
         lifeTime--;
     }
 
+    //Modifies: this
+    //Effects: Moves the projectile according the parameters of the vector, triggers
+    //         an action if the move will result in overlapping with a wall
     public void move() {
         vector.update();
         x1 += vector.getVelocityX();
@@ -121,6 +126,8 @@ public class Projectile extends Entity {
         game.getEnemyProjectileManager().remove(this);
     }
 
+    //Modifies: this
+    //Effects: updates the integer position and double position of the projectile
     @Override
     public void setPosition(Position position) {
         this.position = position;

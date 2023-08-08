@@ -3,10 +3,12 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a custom JButton with modifiable color and text
 public class CustomButton extends JButton {
     private final String name;
     private Color color = new Color(0, 128, 0);
 
+    //Constructs a button with fixed width height and a name
     public CustomButton(String name) {
         int width = 48 * 2;
         int height = 48;
@@ -16,6 +18,8 @@ public class CustomButton extends JButton {
         setPreferredSize(new Dimension(width, height));
     }
 
+    //Modifies: g
+    //Effects: draws the button with color and text based on its fields
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -29,6 +33,8 @@ public class CustomButton extends JButton {
         g2.drawString(name, 10, getHeight() / 2 + 5);
     }
 
+    //Modifies: this
+    //Effects: sets the color of the button
     public void setColor(Color color) {
         this.color = color;
     }

@@ -5,11 +5,12 @@ import model.Game;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents the display screen of all the power ups obtained so far
 public class PowerUpsPanel extends JFrame {
 
     Game game;
-    private JPanel jlabelPanel = new JPanel();
 
+    //Constructs a screen that gets its data of power ups from game
     public PowerUpsPanel(Game game) {
         super("Power Ups Obtained");
         setLayout(new BorderLayout());
@@ -29,12 +30,13 @@ public class PowerUpsPanel extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    //Modifies: panel
+    //Effects: adds the name of all the power ups obtains as JLabels to the Jpanel
     public void addContent(JPanel panel) {
         for (String s : game.getPowerUpManager().getLog()) {
             JLabel label = new JLabel(s);
             label.setHorizontalAlignment(JLabel.CENTER);
             panel.add(label);
-//            jlabelPanel.add(label);
         }
     }
 }

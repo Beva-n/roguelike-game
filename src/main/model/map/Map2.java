@@ -8,7 +8,7 @@ import java.awt.*;
 public class Map2 extends Dungeon {
 
     //Effects: Constructs a map with default walls and doors and an additional
-    //         6 4x4 walls in middle of the map
+    //         6 pillars scattered around the middle of the map
     public Map2() {
         super();
         getWallTile().add(new Rectangle(180, 150, 100, 100));

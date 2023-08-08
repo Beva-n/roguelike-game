@@ -6,21 +6,26 @@ import model.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+//Represents the key handler that handles all the key inputs for the game
 public class KeyHandler implements KeyListener {
 
     private Game game;
     private GamePanel gamePanel;
 
+    //Constructs a key handler with a game and game panel field
     public KeyHandler(Game game, GamePanel gamePanel) {
         this.game = game;
         this.gamePanel = gamePanel;
     }
 
+    //Effect: nothing
     @Override
     public void keyTyped(KeyEvent e) {
         // useless
     }
 
+    //Modifies: gamePanel
+    //Effects: enables player movement based on the key the user inputs
     @Override
     public void keyPressed(KeyEvent e) {
         if (!game.getGameState()) {
@@ -43,6 +48,9 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    //Modifies: gamePanel
+    //Effects: disables player movement upon releasing the key
+    //         also toggles the pause screen if the esc key is released
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();

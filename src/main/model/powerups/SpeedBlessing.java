@@ -2,6 +2,7 @@ package model.powerups;
 
 import model.Game;
 
+// Represents a one time power up that increases player's speed
 public class SpeedBlessing extends PowerUp {
 
     public static final String NAME = "SPEED BOOST";
@@ -13,13 +14,9 @@ public class SpeedBlessing extends PowerUp {
     }
 
     //Modifies: game
-    //Effects: Increases the player's attack by 5
+    //Effects: Increases the player's speed by 1
     @Override
     public void apply() {
         game.getPlayer().editSpeed(1);
     }
-
-//    @Override
-//    public void drawCard(Screen screen) {
-//    }
 }

@@ -24,7 +24,7 @@ public class SelectionScreen {
 
 
     //Effects: Constructs a new selection screen that generates random power ups for the player to
-    // choose from, creates 1 instance of selection upon creation
+    // choose from, it has 3 button for the user to use to pick the power ups
     public SelectionScreen(Game game, GamePanel gamePanel) {
         this.game = game;
         this.gamePanel = gamePanel;
@@ -49,6 +49,8 @@ public class SelectionScreen {
         setVisibility();
     }
 
+    //Modifies: g
+    //Effects: draws 3 cards with name and effect of the power up it holds
     public void draw(Graphics g) {
         g.setColor(new Color(9, 121, 105));
         g.fillRoundRect(200, 140, 160, 320, 50, 50);
@@ -86,7 +88,7 @@ public class SelectionScreen {
         }
     }
 
-    //Requires: 0 <= i <= 4
+    //Requires: 0 <= i <= 6
     //Effects: Gets a power up depending on the number given
     public PowerUp getPowerUp(int i) {
         switch (i) {
@@ -118,12 +120,17 @@ public class SelectionScreen {
         flipVisibility();
     }
 
+    //Modifies: this
+    //Effects: sets the visibility of the selection button to the visibility field of the
+    //         selection screen
     public void setVisibility() {
         button1.setVisible(visibility);
         button2.setVisible(visibility);
         button3.setVisible(visibility);
     }
 
+    //Modifies: this
+    //Effects: Toggles the visibility of the buttons, true -> false and false -> true
     public void flipVisibility() {
         visibility = !visibility;
         setVisibility();

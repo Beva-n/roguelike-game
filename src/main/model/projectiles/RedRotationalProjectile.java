@@ -4,11 +4,11 @@ import model.Game;
 import model.Position;
 import ui.Vector;
 
+// Represents a projectile with preset modified colour and behaviour
 public class RedRotationalProjectile extends Projectile {
 
-    private Position position;
-    private int angle = 0;
-
+    //Effects: Constructs a modified projectile with that greatly slows down after a burst of speed
+    //         The projectile is slightly larger than a default projectile
     public RedRotationalProjectile(Position position, double dx, double dy,
                                    int damage, int lifetime, int limit, Game game) {
         super(position, damage, lifetime, game);

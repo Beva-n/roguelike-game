@@ -7,15 +7,20 @@ public class Position {
     private int posX;
     private int posY;
 
+    //Effects: Constructs a position with x and y
     public Position(int x, int y) {
         posX = x;
         posY = y;
     }
 
+    //Modifies: this
+    //Effects: increases the x value of the position by x
     public void editPosX(int x) {
         posX += x;
     }
 
+    //Modifies: this
+    //Effects: increases the y value of the position by y
     public void editPosY(int y) {
         posY += y;
     }

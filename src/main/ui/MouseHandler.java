@@ -8,14 +8,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+//Represents the mouse handler that handles all the mouse inputs for the game
 public class MouseHandler extends MouseAdapter implements MouseListener {
     private Game game;
 
+    //Constructs a mouse handler with game and gamePanel
     public MouseHandler(Game game, GamePanel gamePanel) {
         gamePanel.addMouseMotionListener(this);
         this.game = game;
     }
 
+    //Modifies: game
+    //Effects: spawns a new friendly projectile flying towards the cursor location if mouse is clicked
+    //         will only take place if game is not paused and player shooting is not on cool down
     @Override
     public void mouseClicked(MouseEvent e) {
         Point mouse = e.getPoint();

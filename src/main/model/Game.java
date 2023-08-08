@@ -61,6 +61,7 @@ public class Game {
         player.heal(15);
         map = getRandomMap();
         playerProjectileManager = new PlayerProjectileManager(this);
+        enemyProjectileManager = new EnemyProjectileManager(this);
         enemyManager = new EnemyManager(this, floorLevel);
     }
 
@@ -119,6 +120,7 @@ public class Game {
         }
     }
 
+    //Effects: converts the level and buffs in the game as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("level", floorLevel);
@@ -137,10 +139,14 @@ public class Game {
         return jsonArray;
     }
 
+    //Modifies: this
+    //Effects: flip the game state, true -> false, and false -> true
     public void flipGameState() {
         gameState = !gameState;
     }
 
+    //Modifies: this
+    //Effects: flip the selection state, true -> false, and false -> true
     public void flipSelectionState() {
         selectionState = !selectionState;
     }

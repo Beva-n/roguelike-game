@@ -5,7 +5,7 @@ import ui.Vector;
 
 
 // Represents an enemy with properties of an entity
-// with additional fields health/attack/defense and attack cooldowns
+// with additional fields health/attack/defense/damage/speed and cooldowns
 public class Enemy extends Entity {
 
     private static final int HEALTH = 30;
@@ -38,8 +38,8 @@ public class Enemy extends Entity {
 
     //Modifies: this, game
     //Effects: if health is 0, deletes itself from game's enemymanager
-    //         if movecooldown is 0, moves 1 tile in a random direction, else lowers movecooldown
-    //         lowers attack cooldown by 1
+    //         if can move, moves the enemy towards the player
+    //         lowers both attack cooldowns by 1
     public void update() {
 
         if (health <= 0) {
@@ -63,6 +63,9 @@ public class Enemy extends Entity {
         attackCd--;
     }
 
+    //Modifies: this
+    //Effects: Moves the enemy towards the player
+    //         if movement results in collision with the wall, movement will not take place
     public void move() {
         double dx = game.getPlayerX() - position.getX();
         double dy = game.getPlayerY() - position.getY();
@@ -75,6 +78,8 @@ public class Enemy extends Entity {
         }
     }
 
+    //Modifies: game
+    //Effects: Spawns a new bullet that scales with the enemy's damage with a vector towards the player
     public void shoot() {
         double dx = game.getPlayerX() - position.getX();
         double dy = game.getPlayerY() - position.getY();
@@ -83,6 +88,9 @@ public class Enemy extends Entity {
                 100, game));
     }
 
+    //Requires: level >= 1
+    //Modifies: this
+    //Effects: increases the damage, health, defense, and speed of the enemy depending on the level
     public void scale(int level) {
         level = level - 1;
         bulletDamage += Math.round(BULLET_DAMAGE * level * 0.1);

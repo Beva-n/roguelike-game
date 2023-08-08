@@ -6,6 +6,7 @@ import ui.Vector;
 
 import java.awt.*;
 
+// Represents a special enemy with enhanced stats and a unique attack behaviour
 public class Boss extends Enemy {
 
     private static final int HEALTH = 500;
@@ -16,6 +17,8 @@ public class Boss extends Enemy {
     private int moveDowntime = 0;
     private int damage = 10;
 
+    //Effects: constructs a boss with a fixed position, and size, the boss's stats scales with
+    //         the level it is encountered in
     public Boss(int level, Game game) {
         super(new Position(800, 260), game);
         scale(level);
@@ -24,6 +27,8 @@ public class Boss extends Enemy {
         height = 50;
     }
 
+    //Modifies: this
+    //Effects: sets the damage, defense, and health of the boss based on the level
     @Override
     public void scale(int level) {
         setHealth((int)Math.round(HEALTH * (1 + ((level - 5.0) / 10.0))));
@@ -31,6 +36,10 @@ public class Boss extends Enemy {
         damage = DAMAGE * (level / 5);
     }
 
+    //Modifies: this, game
+    //Effects: deletes, moves, and shoots depending on the current scenario
+    //         if health is 0, deletes the object from game
+    //         if moveDowntime is 0, performs the next action in the move cycle
     @Override
     public void update() {
         //check ded
@@ -49,6 +58,9 @@ public class Boss extends Enemy {
         moveDowntime--;
     }
 
+    //Modifies: this
+    //Effects: moves the boss based the player's current location, the move will not take place
+    //         if the boss is sufficiently close to the player
     @Override
     public void move() {
         double dx = game.getPlayerX() - position.getX();
@@ -64,7 +76,8 @@ public class Boss extends Enemy {
         }
     }
 
-    //Effects: picks a action in the moveset to perform
+    //Modifies: this, game
+    //Effects: picks an action in the moveset to perform
     public void doShoot() {
         switch (moveset) {
             case 6:
@@ -88,6 +101,9 @@ public class Boss extends Enemy {
         }
     }
 
+    //Modifies: this, game
+    //Effects: summons a ring of blue accelerating projectile at the given x and y relative to the bosses
+    //         advances the moveset and resets move cooldown
     public void blueRing(int posX, int posY) {
         spawnBlueRing(-9.2388, -3.82683, posX, posY);
         spawnBlueRing(-9.2388, 3.82683, posX, posY);
@@ -111,6 +127,9 @@ public class Boss extends Enemy {
         }
     }
 
+    //Modifies: this, game
+    //Effects: summons a ring of red accelerating projectile at the given x and y relative to the bosses
+    //         advances the moveset and resets move cooldown
     public void redRing(int posX, int posY) {
         spawnRedRing(-9.2388, -3.82683, posX, posY);
         spawnRedRing(-9.2388, 3.82683, posX, posY);
@@ -134,6 +153,9 @@ public class Boss extends Enemy {
         }
     }
 
+    //Modifies: this, game
+    //Effects: summons a ring of pink lingering projectile at the boss's position
+    //         advances the moveset and resets move cooldown
     public void pinkRing() {
         spawnPinkRing(-9.2388, -3.82683);
         spawnPinkRing(-9.2388, 3.82683);
@@ -155,6 +177,9 @@ public class Boss extends Enemy {
         moveset++;
     }
 
+    //Modifies: this, game
+    //Effects: summons a burst of decelerating blue projectile in 8 directions
+    //         advances the moveset and resets move cooldown
     public void blueRotational() {
         spawnBlueRotational(-9.2388, -3.82683);
         spawnBlueRotational(-9.2388, 3.82683);
@@ -168,6 +193,9 @@ public class Boss extends Enemy {
         moveset++;
     }
 
+    //Modifies: this, game
+    //Effects: summons a burst of decelerating red projectile in 8 directions
+    //         advances the moveset and resets move cooldown
     public void redRotational() {
         spawnRedRotational(-10.0, 0);
         spawnRedRotational(10.0, 0);
@@ -185,24 +213,36 @@ public class Boss extends Enemy {
         moveset++;
     }
 
+    //Modifies: game
+    //Effects: Adds a blue accelerating projectile to the game's projectile manager
+    //         the projectile's velocity depends on x and y, and location by posX and posY
     public void spawnBlueRing(double x, double y, int posX, int posY) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new BlueRingProjectile(
                 new Position(getPosition().getX() + posX, getPosition().getY() + posY), x, y, damage, 150, game));
     }
 
+    //Modifies: game
+    //Effects: Adds a red accelerating projectile to the game's projectile manager
+    //         the projectile's vector depends on x and y, and location by posX and posY
     public void spawnRedRing(double x, double y, int posX, int posY) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new RedRingProjectile(
                 new Position(getPosition().getX() + posX, getPosition().getY() + posY), x, y, damage, 150, game));
     }
 
+    //Modifies: game
+    //Effects: Adds pink lingering projectile to the game's projectile manager
+    //         the projectile's velocity is represented by x and y
     public void spawnPinkRing(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new PinkRingProjectile(
                 new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 180, game));
     }
 
+    //Modifies: game
+    //Effects: Adds 3 decelerating red projectile to the game's projectile manager
+    //         the projectile's vector is depends on x and y
     public void spawnRedRotational(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new RedRotationalProjectile(
@@ -213,6 +253,9 @@ public class Boss extends Enemy {
                 new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 4, game));
     }
 
+    //Modifies: game
+    //Effects: Adds 3 decelerating blue projectile to the game's projectile manager
+    //         the projectile's vector is depends on
     public void spawnBlueRotational(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new BlueRotationalProjectile(

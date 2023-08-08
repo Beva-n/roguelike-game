@@ -17,9 +17,8 @@ public class Player extends Entity {
     private int range = 40;
     private int speed = 3;
 
-    //Effects: Constructs a player with hp/max hp of 100, attack/max attack of 15
-    //         def/ max def of 20, a range of 50, a face direction of right
-    //         a shootcd of half a second, and a fixed starting position
+    //Effects: Constructs a player with hp/max hp of 100, attack/max attack of 20
+    //         def/ max def of 0, a range of 40, a shootcd of half a second, and a fixed starting position
     public Player(Game game) {
         super(new Position(60, 232), game);
         this.health = maxHealth;
@@ -36,11 +35,14 @@ public class Player extends Entity {
     }
 
     //Modifies: this
-    //Effects: Reduces the player's move cooldown and shoot cool down by 1 respectively
+    //Effects: Reduces the player's shoot cool down by 1 respectively
     public void update() {
         shootCd--;
     }
 
+    //Modifies: this
+    //Effects: moves the player's position by the provided x and y value
+    //         if the movement results in collision with a wall, the movement will not take place
     public void move(int x, int y) {
         position.editPosX(x);
         position.editPosY(y);
@@ -50,6 +52,8 @@ public class Player extends Entity {
         }
     }
 
+    //Modifies: this
+    //Effects: increases the player's speed, attack, health, and defense
     public void scaleWithLevel() {
         editSpeed(1);
         editAttack(7);
@@ -58,6 +62,8 @@ public class Player extends Entity {
         editDefense(4);
     }
 
+    //Requires: level >= 1
+    //Effects: increases the player's overall stats based on the level parameter
     public void scaleWithLevel(int level) {
         int count = (level - (level % 5)) / 5;
         for (int i = 0; i < count; i++) {
@@ -141,7 +147,7 @@ public class Player extends Entity {
     }
 
     //Modifies: this
-    //Effects: decreases max shoot cd by amount, cannot be lowered lower than 5
+    //Effects: decreases max shoot cd by amount, cannot be lowered lower than 6 shoots per second
     public void editAttackSpeed(int amount) {
         maxShootCd = Math.max(5, maxShootCd - amount);
     }

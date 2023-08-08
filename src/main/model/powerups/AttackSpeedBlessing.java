@@ -2,6 +2,8 @@ package model.powerups;
 
 import model.Game;
 
+
+// Represents a one time power up that increases player's attack speed
 public class AttackSpeedBlessing extends PowerUp {
 
     public static final String NAME = "ATK SPD BOOST";
@@ -13,13 +15,9 @@ public class AttackSpeedBlessing extends PowerUp {
     }
 
     //Modifies: game
-    //Effects: Increases the player's attack by 5
+    //Effects: Increases the players speed by a little bit
     @Override
     public void apply() {
         game.getPlayer().editAttackSpeed(2);
     }
-
-//    @Override
-//    public void drawCard(Screen screen) {
-//    }
 }

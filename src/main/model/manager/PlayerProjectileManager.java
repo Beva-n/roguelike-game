@@ -8,7 +8,7 @@ import model.projectiles.Projectile;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents the collection of all projectiles in the game
+// Represents the collection of all player projectiles in the game
 // has a list of entity that stores the projectiles
 public class PlayerProjectileManager extends EntityManager {
 

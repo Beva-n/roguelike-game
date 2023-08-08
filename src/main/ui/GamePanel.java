@@ -15,13 +15,14 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// Represents the main gamepanel of the game
+// Displays basic elements of the game on a jPanel
 public class GamePanel extends JPanel implements Runnable {
 
     public static final int FPS = 30;
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 600;
     private static final String JSON_STORE = "./data/game.json";
-    private final String selectionState = "SELECTION";
     private PauseScreen pauseScreen;
     private SelectionScreen selectionScreen;
     private Thread gameThread;
@@ -36,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean moveDown = false;
     private boolean lastSelectionState = false;
 
+    //Effects: initiates a new game, starts in a paused state with ends by the user pressing esc key
     public GamePanel() {
         setLayout(null);
 
@@ -55,6 +57,8 @@ public class GamePanel extends JPanel implements Runnable {
         addKeyListener(new KeyHandler(game, this));
     }
 
+    //Modifies: this
+    //Effects: starts updating/drawing the game
     public void startGameThread() {
         gameThread = new Thread(this);
         game.flipGameState();
@@ -62,6 +66,9 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
 
+    //Modifies: this
+    //Effects: updates all the entities in the game, and clears and redraws
+    //         everything on the screen based on the updates
     @Override
     public void run() {
         double drawInterval = 1000000000 / FPS;
@@ -88,6 +95,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    //Modifies: this
+    //Effects: Updates all the elements in the game, including the new player movements
     public void update() {
         game.updateGame();
         if (game.getPlayer().getHealth() <= 0) {
@@ -113,6 +122,8 @@ public class GamePanel extends JPanel implements Runnable {
         lastSelectionState = game.getSelectionState();
     }
 
+    //Modifies: this
+    //Effects: Sets the game screen to be invisible as the game ends
     public void endGame() {
         ended = true;
         // who knows gonna keep this way for now
@@ -120,6 +131,9 @@ public class GamePanel extends JPanel implements Runnable {
         setVisible(false);
     }
 
+    //Modifies: g
+    //Effects: draws all the entities on the screen, and the pause/selection screen
+    //         depending on the game state and selection state
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -153,7 +167,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the game to file
     public void saveGame() {
         try {
             jsonWriter.open();
@@ -166,7 +180,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads game workroom from file
+    // EFFECTS: loads game from file
     public void loadGame() {
         try {
             jsonReader.read();
@@ -212,7 +226,7 @@ public class GamePanel extends JPanel implements Runnable {
 //        text.putString(78, 0, String.valueOf(game.getFloorLevel()));
     }
 
-    //Modifies: this
+    //Modifies: g
     //Effects: Draws all the wall and door tiles on the screen, door is red coloured if
     //         enemies are not defeated and yellow coloured if they are
     public void drawDungeon(Graphics g) {
@@ -230,7 +244,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    //Modifies: this
+    //Modifies: g
     //Effects: draw the player on the screen, as a green tile
     public void drawPlayer(Graphics g) {
         Player player = game.getPlayer();
@@ -239,7 +253,7 @@ public class GamePanel extends JPanel implements Runnable {
                 player.getWidth(), player.getHeight(), 8, 8);
     }
 
-    //Modifies: this
+    //Modifies: g
     //Effects: draws the projectile on the screen, as a purple circle
     public void drawProjectile(Entity e, Graphics g, int mode) {
         if (mode == 1) {
@@ -251,7 +265,7 @@ public class GamePanel extends JPanel implements Runnable {
                 e.getWidth(), e.getHeight());
     }
 
-    //Modifies: this
+    //Modifies: g
     //Effects: draws the enemy on the screen, as a red tile
     public void drawEnemy(Entity e, Graphics g) {
         g.setColor(Color.red);
@@ -259,7 +273,7 @@ public class GamePanel extends JPanel implements Runnable {
                 e.getWidth(), e.getHeight(), 8, 8);
     }
 
-    //Modifies: screen
+    //Modifies: g
     //Effects: draws all the enemies and projectiles in list on the screen
     public void drawAllEntities(Graphics g) {
         PlayerProjectileManager playerProjectileManager = game.getPlayerProjectileManager();
@@ -285,10 +299,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public PauseScreen getPauseScreen() {
         return pauseScreen;
-    }
-
-    public SelectionScreen getSelectionScreen() {
-        return selectionScreen;
     }
 
     public void setSaved(boolean saved) {

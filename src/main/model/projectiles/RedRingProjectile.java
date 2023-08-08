@@ -4,8 +4,11 @@ import model.Game;
 import model.Position;
 import ui.Vector;
 
+// Represents a projectile with preset modified colour and behaviour
 public class RedRingProjectile extends Projectile {
 
+    //Effects: Constructs a modified projectile with an initial velocity of 0 and a gradual acceleration
+    //         the projectile have a smaller size compared to a normal projectile
     public RedRingProjectile(Position position, double dx, double dy,
                               int damage, int lifetime, Game game) {
         super(position, damage, lifetime, game);
