@@ -22,7 +22,22 @@ public class GameTest {
     void testConstructor() {
         assertTrue(game.getPowerUpManager().getPowerUps().isEmpty());
         assertTrue(game.getGameState());
+        assertFalse(game.getSelectionState());
         assertEquals(1, game.getFloorLevel());
+    }
+
+    @Test
+    void testFlips() {
+        assertTrue(game.getGameState());
+        assertFalse(game.getSelectionState());
+        game.flipGameState();
+        assertFalse(game.getGameState());
+        game.flipGameState();
+        assertTrue(game.getGameState());
+        game.flipSelectionState();
+        assertTrue(game.getSelectionState());
+        game.flipSelectionState();
+        assertFalse(game.getSelectionState());
     }
 
     @Test
@@ -99,5 +114,7 @@ public class GameTest {
         assertTrue(game.getPowerUp("RANGE BOOST").getClass() == new RangeBlessing(game).getClass());
         assertTrue(game.getPowerUp("LIFE BLESSING").getClass() == new LifeBlessing(game).getClass());
         assertTrue(game.getPowerUp("HEALING BLESSING").getClass() == new HealingBlessing(game).getClass());
+        assertTrue(game.getPowerUp("ATK SPD BOOST").getClass() == new AttackSpeedBlessing(game).getClass());
+        assertTrue(game.getPowerUp("SPEED BOOST").getClass() == new SpeedBlessing(game).getClass());
     }
 }

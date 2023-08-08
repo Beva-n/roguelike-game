@@ -17,6 +17,17 @@ public class PlayerTest {
     }
 
     @Test
+    void testConstructor() {
+        assertEquals(100, player.getHealth());
+        assertEquals(20, player.getAttack());
+        assertEquals(0, player.getDefense());
+        assertEquals(new Position(60, 232), player.getPosition());
+        assertEquals(40, player.getRange());
+        assertEquals(3, player.getSpeed());
+        assertEquals(0, player.getHealthLost());
+    }
+
+    @Test
     void testScaleWithLevel() {
         player.scaleWithLevel();
         assertEquals(130, player.getHealth());
@@ -43,16 +54,6 @@ public class PlayerTest {
     }
 
     @Test
-    void testConstructor() {
-        assertEquals(100, player.getHealth());
-        assertEquals(20, player.getAttack());
-        assertEquals(0, player.getDefense());
-        assertEquals(new Position(60, 232), player.getPosition());
-        assertEquals(40, player.getRange());
-        assertEquals(3, player.getSpeed());
-    }
-
-    @Test
     void testReset() {
         player.setPosition(new Position(15 ,15));
         player.reset();
@@ -73,6 +74,16 @@ public class PlayerTest {
         assertEquals(60, player.getHealth());
         player.decreaseHealth(10);
         assertEquals(50, player.getHealth());
+    }
+
+    @Test
+    void testEditAttackSpeed() {
+        assertEquals(15, player.getMaxShootCd());
+        player.editAttackSpeed(2);
+        assertEquals(13, player.getMaxShootCd());
+        assertEquals(0, player.getShootCd());
+        player.resetShootCd();
+        assertEquals(13, player.getShootCd());
     }
 
     @Test

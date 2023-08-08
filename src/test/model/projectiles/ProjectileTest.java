@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.Vector;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,6 +27,7 @@ public class ProjectileTest {
         assertEquals(10, projectile.getLifeTime());
         assertEquals(10, projectile.getDamage());
         assertEquals(new Position(15, 15), projectile.getPosition());
+        assertEquals(Color.red, projectile.getColor());
     }
 
     @Test

@@ -40,7 +40,9 @@ public class BossTest {
         assertEquals(new Position(800, 260), boss.getPosition());
         assertEquals(0, boss.getMoveDowntime());
         boss.update();
-        assertNotEquals(0, boss.getMoveDowntime());
+        assertEquals(44, boss.getMoveDowntime());
+        boss.update();
+        assertEquals(43, boss.getMoveDowntime());
     }
 
     @Test

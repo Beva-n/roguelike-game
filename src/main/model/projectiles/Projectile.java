@@ -128,21 +128,6 @@ public class Projectile extends Entity {
         y1 = position.getY();
     }
 
-    public double getX1() {
-        return x1;
-    }
-
-    public double getY1() {
-        return y1;
-    }
-
-    public void setX(double x) {
-        x1 = x;
-    }
-
-    public void setY(double y) {
-        y1 = y;
-    }
 
     public int getDamage() {
         return damage;
@@ -164,7 +149,4 @@ public class Projectile extends Entity {
         return Color.red;
     }
 
-    public Vector getVector() {
-        return vector;
-    }
 }

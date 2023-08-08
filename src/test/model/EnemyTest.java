@@ -10,12 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EnemyTest {
 
     Enemy enemy;
+    Enemy enemy2;
     Game game;
 
     @BeforeEach
     void runBefore() {
         game = new Game();
         enemy = new Enemy(new Position(100, 100), game);
+        enemy2 = new Enemy(new Position(100, 100), 1, game);
     }
 
     @Test
@@ -24,6 +26,10 @@ public class EnemyTest {
         assertEquals(20, enemy.getContactDamage());
         assertEquals(0, enemy.getDefense());
         assertEquals(new Position(100, 100), enemy.getPosition());
+        assertEquals(30, enemy2.getHealth());
+        assertEquals(20, enemy2.getContactDamage());
+        assertEquals(0, enemy2.getDefense());
+        assertEquals(new Position(100, 100), enemy2.getPosition());
     }
 
     @Test

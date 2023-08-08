@@ -201,6 +201,10 @@ public class Player extends Entity {
         return shootCd;
     }
 
+    public int getMaxShootCd() {
+        return maxShootCd;
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -213,13 +217,6 @@ public class Player extends Entity {
         return speed;
     }
 
-    public int getMaxShootCd() {
-        return maxShootCd;
-    }
-
-    public void setShootCd(int shootCd) {
-        this.shootCd = shootCd;
-    }
 
 
 }
