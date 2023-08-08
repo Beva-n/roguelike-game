@@ -19,6 +19,7 @@ public class PlayerProjectileManagerTest {
     Game game;
     Projectile projectile1;
     Projectile projectile2;
+    Projectile projectile3;
 
     @BeforeEach
     void runBefore() {
@@ -26,6 +27,7 @@ public class PlayerProjectileManagerTest {
         playerProjectileManager = new PlayerProjectileManager(game);
         projectile1 = new Projectile(new Position(80, 80), new Vector(0, 1, 1), 10, 20, game);
         projectile2 = new Projectile(new Position(800, 800), new Vector(0, -1, 1), 10, 20, game);
+        projectile3 = new Projectile(new Position(80, 80), new Vector(0, 1, 1), 100000, 20, game);
     }
 
     @Test
@@ -43,9 +45,10 @@ public class PlayerProjectileManagerTest {
         enemyManager.spawn(new Enemy(new Position(80, 80), game));
         playerProjectileManager.checkCollisionAll();
         assertFalse(playerProjectileManager.getEntities().isEmpty());
-
-        playerProjectileManager.clearEntities();
-        enemyManager.clearEntities();
+        assertFalse(enemyManager.getEntities().isEmpty());
+        playerProjectileManager.spawn(projectile3);
+        playerProjectileManager.checkCollisionAll();
+        assertTrue(enemyManager.getEntities().isEmpty());
 
 //        playerProjectileManager.spawn(new Projectile(new Position(1, 1), 'w', 10000, game));
 //        enemyManager.spawn(new Enemy(new Position(1, 1), game));

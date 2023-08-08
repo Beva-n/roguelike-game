@@ -26,8 +26,8 @@ public class AttackSpeedBlessingTest {
 
     @Test
     void testApply() {
-        assertEquals(15, game.getPlayer().getShootCd());
+        assertEquals(15, game.getPlayer().getMaxShootCd());
         atkSpdBlessing.apply();
-        assertEquals(13, game.getPlayer().getShootCd());
+        assertEquals(13, game.getPlayer().getMaxShootCd());
     }
 }
