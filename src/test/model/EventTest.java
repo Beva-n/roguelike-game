@@ -38,4 +38,13 @@ public class EventTest {
         assertEquals(d.toString() + "\n" + "yes", e.toString());
     }
 
+    @Test
+    public void testHashCode() {
+        Event e = new Event("yes");
+        Event e1 = new Event("yes");
+        Event e2 = new Event("no");
+        assertEquals(e.hashCode(), e1.hashCode());
+        assertNotEquals(e.hashCode(), e2.hashCode());
+    }
+
 }
