@@ -13,9 +13,9 @@ import java.util.stream.Stream;
 
 // Represents a reader that reads game from JSON data stored in file
 public class JsonReader {
-    private String source;
+    private final String source;
 
-    private Game game;
+    private final Game game;
 
     // EFFECTS: constructs reader to read from source file and load into game
     public JsonReader(String source, Game game) {

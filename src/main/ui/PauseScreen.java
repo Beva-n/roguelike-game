@@ -7,11 +7,11 @@ import java.awt.*;
 //Represents a pause screen that shows up when the game is paused
 public class PauseScreen {
 
-    private GamePanel gamePanel;
-    private Game game;
-    private CustomButton saveButton;
-    private CustomButton loadButton;
-    private CustomButton powerUpsButton;
+    private final GamePanel gamePanel;
+    private final Game game;
+    private final CustomButton saveButton;
+    private final CustomButton loadButton;
+    private final CustomButton powerUpsButton;
     private boolean visibility = false;
 
     //Effects: Constructs a pause screen with game and gamePanel, comes with 3 buttons with

@@ -83,9 +83,8 @@ public class Enemy extends Entity {
     public void shoot() {
         double dx = game.getPlayerX() - position.getX();
         double dy = game.getPlayerY() - position.getY();
-        game.getEnemyProjectileManager().spawn(new Projectile(getCenter(),
-            new Vector(dx, dy, 7), bulletDamage,
-            100, game));
+        game.getEnemyProjectileManager().spawn(new Projectile(getCenter(), new Vector(dx, dy, 7),
+                bulletDamage, 100, game));
     }
 
     //Requires: level >= 1

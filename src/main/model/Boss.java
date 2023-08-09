@@ -69,7 +69,7 @@ public class Boss extends Enemy {
         position.editPosX(movement.getVelocityX());
         position.editPosY(movement.getVelocityY());
         Rectangle aroundPlayer = new Rectangle(game.getPlayerX() - 60, game.getPlayerY() - 60,
-            120 + game.getPlayer().getWidth(), 120 + game.getPlayer().getHeight());
+                120 + game.getPlayer().getWidth(), 120 + game.getPlayer().getHeight());
         if (aroundPlayer.intersects(getHitBox())) {
             position.editPosX(-movement.getVelocityX());
             position.editPosY(-movement.getVelocityY());
@@ -219,7 +219,7 @@ public class Boss extends Enemy {
     public void spawnBlueRing(double x, double y, int posX, int posY) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new BlueRingProjectile(
-            new Position(getPosition().getX() + posX, getPosition().getY() + posY), x, y, damage, 150, game));
+                new Position(getPosition().getX() + posX, getPosition().getY() + posY), x, y, damage, 150, game));
     }
 
     //Modifies: game
@@ -228,7 +228,7 @@ public class Boss extends Enemy {
     public void spawnRedRing(double x, double y, int posX, int posY) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new RedRingProjectile(
-            new Position(getPosition().getX() + posX, getPosition().getY() + posY), x, y, damage, 150, game));
+                new Position(getPosition().getX() + posX, getPosition().getY() + posY), x, y, damage, 150, game));
     }
 
     //Modifies: game
@@ -237,7 +237,7 @@ public class Boss extends Enemy {
     public void spawnPinkRing(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new PinkRingProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 180, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 180, game));
     }
 
     //Modifies: game
@@ -246,11 +246,11 @@ public class Boss extends Enemy {
     public void spawnRedRotational(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new RedRotationalProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 10, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 10, game));
         enemyProjectileManager.spawn(new RedRotationalProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 7, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 7, game));
         enemyProjectileManager.spawn(new RedRotationalProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 4, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 4, game));
     }
 
     //Modifies: game
@@ -259,11 +259,11 @@ public class Boss extends Enemy {
     public void spawnBlueRotational(double x, double y) {
         EnemyProjectileManager enemyProjectileManager = game.getEnemyProjectileManager();
         enemyProjectileManager.spawn(new BlueRotationalProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 10, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 10, game));
         enemyProjectileManager.spawn(new BlueRotationalProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 7, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 7, game));
         enemyProjectileManager.spawn(new BlueRotationalProjectile(
-            new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 4, game));
+                new Position(getPosition().getX(), getPosition().getY() + 20), x, y, damage, 60, 4, game));
     }
 
     public int getMoveset() {

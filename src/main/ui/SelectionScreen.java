@@ -12,9 +12,9 @@ import java.util.Set;
 // Holds and displays the pickable upgrades in the beginning of every turn
 public class SelectionScreen {
 
-    private CustomButton button1;
-    private CustomButton button2;
-    private CustomButton button3;
+    private final CustomButton button1;
+    private final CustomButton button2;
+    private final CustomButton button3;
     private final Random rand = new Random();
     private final PowerUp[] choices = new PowerUp[3];
     private final Game game;

@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 // Code from Alarm System
+
 /**
  * Represents an alarm system event.
  */
@@ -54,7 +55,7 @@ public class Event {
         Event otherEvent = (Event) other;
 
         return (this.dateLogged.equals(otherEvent.dateLogged)
-            && this.description.equals(otherEvent.description));
+                && this.description.equals(otherEvent.description));
     }
 
     @Override

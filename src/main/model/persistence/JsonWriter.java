@@ -11,8 +11,8 @@ import java.io.PrintWriter;
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
-    private String destination;
-    private Game game;
+    private final String destination;
+    private final Game game;
 
     // EFFECTS: constructs writer to write to destination file about game
     public JsonWriter(String destination, Game game) {

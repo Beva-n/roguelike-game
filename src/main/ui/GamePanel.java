@@ -1,10 +1,7 @@
 package ui;
 
-import model.Entity;
 import model.Event;
-import model.EventLog;
-import model.Game;
-import model.Player;
+import model.*;
 import model.manager.EnemyManager;
 import model.manager.EnemyProjectileManager;
 import model.manager.PlayerProjectileManager;
@@ -27,12 +24,12 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 600;
     private static final String JSON_STORE = "./data/game.json";
-    private PauseScreen pauseScreen;
-    private SelectionScreen selectionScreen;
+    private final PauseScreen pauseScreen;
+    private final SelectionScreen selectionScreen;
     private Thread gameThread;
-    private Game game;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private final Game game;
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
     private boolean saved = false;
     private boolean ended = false;
     private boolean moveLeft = false;
@@ -257,7 +254,7 @@ public class GamePanel extends JPanel implements Runnable {
         Player player = game.getPlayer();
         g.setColor(Color.green);
         g.fillRoundRect(player.getPosition().getX(), player.getPosition().getY(),
-            player.getWidth(), player.getHeight(), 8, 8);
+                player.getWidth(), player.getHeight(), 8, 8);
     }
 
     //Modifies: g
@@ -269,7 +266,7 @@ public class GamePanel extends JPanel implements Runnable {
             g.setColor(((Projectile) e).getColor());
         }
         g.fillOval(e.getPosition().getX(), e.getPosition().getY(),
-            e.getWidth(), e.getHeight());
+                e.getWidth(), e.getHeight());
     }
 
     //Modifies: g
@@ -277,7 +274,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void drawEnemy(Entity e, Graphics g) {
         g.setColor(Color.red);
         g.fillRoundRect(e.getPosition().getX(), e.getPosition().getY(),
-            e.getWidth(), e.getHeight(), 8, 8);
+                e.getWidth(), e.getHeight(), 8, 8);
     }
 
     //Modifies: g

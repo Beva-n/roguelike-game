@@ -90,12 +90,10 @@ public class Game {
     //Effects: Creates a random map from the available map pool
     public Dungeon getRandomMap() {
         int i = rand.nextInt(2);
-        switch (i) {
-            case 1:
-                return new Map2();
-            default:
-                return new Map1();
+        if (i == 1) {
+            return new Map2();
         }
+        return new Map1();
     }
 
     //Requires: name corresponding to one of power ups

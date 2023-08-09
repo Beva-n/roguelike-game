@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 // Code from Alarm System
+
 /**
  * Represents a log of alarm system events.
  * We use the Singleton Design Pattern to ensure that there is only

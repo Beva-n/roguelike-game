@@ -7,8 +7,8 @@ public class Vector {
     private int antiAccerlerationTime;
     private double velocityX;
     private double velocityY;
-    private double accelerationX;
-    private double accelerationY;
+    private final double accelerationX;
+    private final double accelerationY;
 
     //Effects: constructs a new vector with a velocity and no acceleration and no stop time
     //         automatically scales to the limit if it is over limit

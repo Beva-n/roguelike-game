@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 //Represents the key handler that handles all the key inputs for the game
 public class KeyHandler implements KeyListener {
 
-    private Game game;
-    private GamePanel gamePanel;
+    private final Game game;
+    private final GamePanel gamePanel;
 
     //Constructs a key handler with a game and game panel field
     public KeyHandler(Game game, GamePanel gamePanel) {
