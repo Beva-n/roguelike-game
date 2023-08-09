@@ -1,6 +1,10 @@
 package ui;
 
-import model.*;
+import model.Entity;
+import model.Event;
+import model.EventLog;
+import model.Game;
+import model.Player;
 import model.manager.EnemyManager;
 import model.manager.EnemyProjectileManager;
 import model.manager.PlayerProjectileManager;
@@ -42,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
         setLayout(null);
 
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-        setBackground(new Color(0,0,0));
+        setBackground(new Color(0, 0, 0));
         setDoubleBuffered(true);
         setFocusable(true);
         setVisible(true);
@@ -128,7 +132,10 @@ public class GamePanel extends JPanel implements Runnable {
         ended = true;
         // who knows gonna keep this way for now
         // future big brain me will come up with something better
-        setVisible(false);
+        for (Event e : EventLog.getInstance()) {
+            System.out.println(e);
+        }
+        System.exit(0);
     }
 
     //Modifies: g
@@ -210,8 +217,8 @@ public class GamePanel extends JPanel implements Runnable {
         // Health Bar
         g.setColor(new Color(0, 255, 0));
         g.fillRect(55, 10, 250, 20);
-        g.setColor(new Color(255, 0,0));
-        int length = (int)(2.5 * game.getPlayer().getHealthLost());
+        g.setColor(new Color(255, 0, 0));
+        int length = (int) (2.5 * game.getPlayer().getHealthLost());
         g.fillRect(305 - length, 10, length, 20);
 
 //        TextGraphics text = screen.newTextGraphics();
@@ -250,7 +257,7 @@ public class GamePanel extends JPanel implements Runnable {
         Player player = game.getPlayer();
         g.setColor(Color.green);
         g.fillRoundRect(player.getPosition().getX(), player.getPosition().getY(),
-                player.getWidth(), player.getHeight(), 8, 8);
+            player.getWidth(), player.getHeight(), 8, 8);
     }
 
     //Modifies: g
@@ -259,10 +266,10 @@ public class GamePanel extends JPanel implements Runnable {
         if (mode == 1) {
             g.setColor(Projectile.PROJECTILE_COLOR);
         } else {
-            g.setColor(((Projectile)e).getColor());
+            g.setColor(((Projectile) e).getColor());
         }
         g.fillOval(e.getPosition().getX(), e.getPosition().getY(),
-                e.getWidth(), e.getHeight());
+            e.getWidth(), e.getHeight());
     }
 
     //Modifies: g
@@ -270,7 +277,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void drawEnemy(Entity e, Graphics g) {
         g.setColor(Color.red);
         g.fillRoundRect(e.getPosition().getX(), e.getPosition().getY(),
-                e.getWidth(), e.getHeight(), 8, 8);
+            e.getWidth(), e.getHeight(), 8, 8);
     }
 
     //Modifies: g

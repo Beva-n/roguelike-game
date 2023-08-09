@@ -1,7 +1,5 @@
 package model.map;
 
-import model.Position;
-
 import java.awt.*;
 
 // represents a map with basic walls and additional wall tiles in the middle

@@ -4,7 +4,6 @@ import model.Boss;
 import model.Enemy;
 import model.Game;
 import model.Position;
-import model.manager.EntityManager;
 import model.map.Map1;
 
 import java.util.Random;

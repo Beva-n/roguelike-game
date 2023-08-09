@@ -32,7 +32,7 @@ public class Enemy extends Entity {
 
     //Effects: Constructs an enemy with an initial start position, health of 30, defense of 0
     //         attack of 40, move cooldown of 1s, and attack cooldown of 1s
-    public Enemy(Position position,  Game game) {
+    public Enemy(Position position, Game game) {
         super(position, game);
     }
 
@@ -84,8 +84,8 @@ public class Enemy extends Entity {
         double dx = game.getPlayerX() - position.getX();
         double dy = game.getPlayerY() - position.getY();
         game.getEnemyProjectileManager().spawn(new Projectile(getCenter(),
-                new Vector(dx, dy, 7), bulletDamage,
-                100, game));
+            new Vector(dx, dy, 7), bulletDamage,
+            100, game));
     }
 
     //Requires: level >= 1

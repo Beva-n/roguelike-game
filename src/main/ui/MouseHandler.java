@@ -29,10 +29,10 @@ public class MouseHandler extends MouseAdapter implements MouseListener {
 
         if (game.getGameState() && game.getPlayer().getShootCd() <= 0) {
             int x2 = game.getPlayer().getPosition().getX() + game.getPlayer().getWidth() / 2;
-            int y2 = game.getPlayer().getPosition().getY() + + game.getPlayer().getHeight() / 2;
+            int y2 = game.getPlayer().getPosition().getY() + +game.getPlayer().getHeight() / 2;
             game.getPlayerProjectileManager().spawn(new Projectile(game.getPlayer().getCenter(),
-                    new Vector(x - x2, y - y2, 10), game.getPlayer().getAttack(),
-                    game.getPlayer().getRange(), game));
+                new Vector(x - x2, y - y2, 10), game.getPlayer().getAttack(),
+                game.getPlayer().getRange(), game));
             game.getPlayer().resetShootCd();
         }
     }

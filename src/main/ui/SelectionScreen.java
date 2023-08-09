@@ -1,7 +1,6 @@
 package ui;
 
 import model.Game;
-import model.powerups.PowerUp;
 import model.powerups.*;
 
 import java.awt.*;
@@ -114,7 +113,6 @@ public class SelectionScreen {
     //         Then returns the game to an un-paused state
     public void choose(int i) {
         game.getPowerUpManager().addPowerUp(choices[i]);
-        System.out.println("Power up selected!");
         game.flipSelectionState();
         game.flipGameState();
         flipVisibility();

@@ -1,7 +1,5 @@
 package model;
 
-import org.w3c.dom.css.Rect;
-
 import java.awt.*;
 
 // represents a entity with a position and move cooldown and the game its part of

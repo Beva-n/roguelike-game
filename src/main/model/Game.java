@@ -1,10 +1,11 @@
 package model;
 
-import com.googlecode.lanterna.TextColor;
 import model.manager.EnemyManager;
 import model.manager.EnemyProjectileManager;
 import model.manager.PlayerProjectileManager;
-import model.map.*;
+import model.map.Dungeon;
+import model.map.Map1;
+import model.map.Map2;
 import model.powerups.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,8 +15,6 @@ import java.util.Random;
 // Represents a game that manages all the elements of the game and updates them
 // has a projectile/enemy/power up manager, selection screen player, gamestate, map, and floor level
 public class Game {
-    public static final TextColor.RGB TEXT_COLOR = new TextColor.RGB(255, 255, 255);
-
     private final Random rand = new Random();
 
     // true of ongoing, false for paused

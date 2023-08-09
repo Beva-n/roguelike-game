@@ -49,7 +49,7 @@ public class JsonReader {
         game.getPlayer().scaleWithLevel(jsonObject.getInt("level"));
         JSONArray jsonArray = jsonObject.getJSONArray("buffs");
         for (Object o : jsonArray) {
-            game.getPowerUpManager().addPowerUp(game.getPowerUp(((String)o)));
+            game.getPowerUpManager().addPowerUp(game.getPowerUp(((String) o)));
         }
         game.getEnemyManager().clearEntities();
     }

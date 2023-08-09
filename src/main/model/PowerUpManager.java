@@ -2,7 +2,10 @@ package model;
 
 import model.powerups.PowerUp;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 
 // Represents the collection of all the powersups obtained so far
@@ -41,6 +44,7 @@ public class PowerUpManager {
 //            powerUps.add(powerUp);
 //        }
         log.add(powerUp.getName());
+        EventLog.getInstance().logEvent(new Event("Added " + powerUp.getName()));
     }
 
     public Queue<PowerUp> getPowerUps() {

@@ -1,6 +1,5 @@
 package model.map;
 
-import com.googlecode.lanterna.TextColor;
 import model.Entity;
 
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.util.List;
 // Represents a map with lists of wall tiles and door tiles
 public abstract class Dungeon {
 
-//    protected ArrayList<Position> wallTile;
+    //    protected ArrayList<Position> wallTile;
 //    protected ArrayList<Position> doorTile;
     private ArrayList<Rectangle> wallTile;
     private ArrayList<Rectangle> doorTile;

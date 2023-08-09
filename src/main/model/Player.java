@@ -1,7 +1,5 @@
 package model;
 
-import com.googlecode.lanterna.TextColor;
-
 // represents a player with parameters from entity and
 // hp/defense/attack/shoot cooldown/range and face direction
 public class Player extends Entity {
@@ -222,7 +220,6 @@ public class Player extends Entity {
     public int getSpeed() {
         return speed;
     }
-
 
 
 }

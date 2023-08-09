@@ -1,1 +1,19 @@
-{}
+{
+    "level": 15,
+    "buffs": [
+        "SPEED BOOST",
+        "ATK BOOST",
+        "DEF BOOST",
+        "ATK BOOST",
+        "DEF BOOST",
+        "SPEED BOOST",
+        "DEF BOOST",
+        "ATK BOOST",
+        "SPEED BOOST",
+        "ATK BOOST",
+        "RANGE BOOST",
+        "ATK SPD BOOST",
+        "DEF BOOST",
+        "DEF BOOST"
+    ]
+}

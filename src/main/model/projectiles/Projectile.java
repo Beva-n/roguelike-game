@@ -64,7 +64,7 @@ public class Projectile extends Entity {
         x1 += vector.getVelocityX();
         y1 += vector.getVelocityY();
         position.setPosX((int) Math.round(x1));
-        position.setPosY((int)Math.round(y1));
+        position.setPosY((int) Math.round(y1));
         if (game.getMap().checkCollisionWall(this)) {
             touchWallAction();
         }

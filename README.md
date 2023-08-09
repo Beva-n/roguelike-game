@@ -49,3 +49,53 @@ contribute to the ongoing evolution of the roguelike genre.
 ## To-Do
 - (hard maybe) active ability kind of power ups
 - player passive stats gain
+
+## Phase 4: Task 2
+Tue Aug 08 18:07:47 PDT 2023
+Added SPEED BOOST
+Tue Aug 08 18:08:05 PDT 2023
+Added ATK BOOST
+Tue Aug 08 18:08:20 PDT 2023
+Added DEF BOOST
+Tue Aug 08 18:08:42 PDT 2023
+Added ATK BOOST
+Tue Aug 08 18:09:02 PDT 2023
+Added DEF BOOST
+Tue Aug 08 18:09:18 PDT 2023
+Added SPEED BOOST
+Tue Aug 08 18:09:30 PDT 2023
+Added DEF BOOST
+Tue Aug 08 18:09:45 PDT 2023
+Added ATK BOOST
+Tue Aug 08 18:10:10 PDT 2023
+Added SPEED BOOST
+Tue Aug 08 18:10:36 PDT 2023
+Added ATK BOOST
+Tue Aug 08 18:10:53 PDT 2023
+Added RANGE BOOST
+Tue Aug 08 18:11:11 PDT 2023
+Added ATK SPD BOOST
+Tue Aug 08 18:11:26 PDT 2023
+Added DEF BOOST
+Tue Aug 08 18:11:43 PDT 2023
+Added DEF BOOST
+
+
+## Phase 4: Task 3
+After drawing the UML class diagram for the final product of my project, I noticed a few areas
+that I can still improve on. The association arrows pointing towards/away from the Game class 
+are too numerous, resulting in a very disorganized relationship between the Game and other 
+classes in the project. Given more time, I would do some refactoring to fix this problem.
+
+One way of refactoring that could help this issue is to **add a getter method in GamePanel that 
+gets the game object**. This is way some association arrows, such as one from MouseHandler, KeyHandler,
+PauseScreen, and SelectionScreen. Those classes simply **access the game object through the getter
+method from GamePanel**, therefore not needing to have both Game and GamePanel as part of their association. 
+This refactor would effectively remove 4 association arrows pointing towards the Game class, 
+therefore making it much more readable.
+
+Another refactoring that doesn't direct relate to the UML diagram to **replace long switch cases with a 
+HashMap** or something that behaves similarly. This is not an issue for my current project as the game 
+implements a very limited number of power ups. But if there were more power ups added to the pool, 
+the switch case (getPowerUp(String name)) could easily exceed the checkstyle method line limit, causing 
+issues for the code.

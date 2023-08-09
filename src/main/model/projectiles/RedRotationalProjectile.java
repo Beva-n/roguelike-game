@@ -18,7 +18,7 @@ public class RedRotationalProjectile extends Projectile {
         height = 18;
     }
 
-      // not winnable rotation
+    // not winnable rotation
 //    @Override
 //    public void move() {
 //        if (!getVector().manualUpdate()) {

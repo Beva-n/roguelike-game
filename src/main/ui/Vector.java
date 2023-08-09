@@ -1,7 +1,5 @@
 package ui;
 
-import java.awt.geom.Line2D;
-
 // Represents a vector class with both velocity and acceleration, comes with a speed limit
 public class Vector {
 
@@ -102,7 +100,7 @@ public class Vector {
     }
 
     public int getVelocityX() {
-        return  (int) Math.round(velocityX);
+        return (int) Math.round(velocityX);
     }
 
     public int getVelocityY() {

@@ -1,17 +1,5 @@
 package ui;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import model.*;
-import model.persistence.JsonReader;
-import model.persistence.JsonWriter;
-import org.json.JSONException;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 // Represents the terminal game
 // Displays all the elements of the game
 //public class TerminalGame {
